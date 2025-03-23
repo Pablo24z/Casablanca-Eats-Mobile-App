@@ -51,6 +51,54 @@
                        FontSize="14"/>
             </StackLayout>
             
+            <!-- popular dishes section -->
+            <StackLayout>
+                <Label Text="Popular Dishes"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="#7ECB37"/>
+                <Frame BackgroundColor="#f7f7f7" CornerRadius="10" Padding="10">
+                    <Label Text="Jerk Chicken - Marinated in traditional Caribbean spices, grilled to perfection"
+                            TextColor="#131313"
+                            FontSize="14"/>
+                </Frame>
+                <Frame BackgroundColor="#F7F7F7" CornerRadius="10" Padding="10">
+                    <Label Text="Curry Goat - Tender, slow-cooked goat in a rich, aromatic curry sauce."
+                           TextColor="#131313"
+                           FontSize="14" />
+                </Frame>
+                <Frame BackgroundColor="#F7F7F7" CornerRadius="10" Padding="10">
+                    <Label Text="Fried Plantains - Golden, sweet, and crisp—perfect as a side or snack."
+                           TextColor="#131313"
+                           FontSize="14" />
+                </Frame>
+            </StackLayout>
+            <!-- CTA Section -->
+            <Frame BackgroundColor="#FA452D" CornerRadius="10" Padding="20">
+                <Label Text="Enjoy 10% off your first dine-in experience! Order online or visit us today."
+                       TextColor="White"
+                       FontSize="16"
+                       HorizontalTextAlignment="Center" />
+            </Frame>
+
+            <!-- Navigation Buttons -->
+            <StackLayout Spacing="10">
+                <Button Text="View Menu"
+                        BackgroundColor="#7ECB37"
+                        TextColor="White"
+                        CornerRadius="8"
+                        Clicked="OnMenuClicked" />
+                <Button Text="Order Pickup"
+                        BackgroundColor="#FECA18"
+                        TextColor="#131313"
+                        CornerRadius="8"
+                        Clicked="OnOrderClicked" />
+                <Button Text="Contact Us"
+                        BackgroundColor="#313131"
+                        TextColor="White"
+                        CornerRadius="8"
+                        Clicked="OnContactClicked" />
+            </StackLayout>
           
 
         </VerticalStackLayout>
