@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="assignment_2425.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:assignment_2425"
-    Shell.FlyoutBehavior="Disabled"
-    Title="assignment_2425">
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:assignment_2425"
+       x:Class="assignment_2425.AppShell"
+       Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!-- Page Routes -->
+    <ShellContent Route="MainPage" ContentTemplate="{DataTemplate pages:MainPage}" />
+    <ShellContent Route="MenuPage" ContentTemplate="{DataTemplate pages:MenuPage}" />
+    <ShellContent Route="OrderPage" ContentTemplate="{DataTemplate pages:OrderPage}" />
+    <ShellContent Route="ContactPage" ContentTemplate="{DataTemplate pages:ContactPage}" />
 
 </Shell>
