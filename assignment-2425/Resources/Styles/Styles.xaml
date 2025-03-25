@@ -7,7 +7,7 @@
     <Style x:Key="TitleStyle" TargetType="Label">
         <Setter Property="FontFamily" Value="PalanquinDarkBold" />
         <Setter Property="FontSize" Value="30" />
-        <Setter Property="TextColor" Value="#131313" />
+        <Setter Property="TextColor" Value="#ffffff" />
     </Style>
 
     <Style TargetType="ActivityIndicator">
@@ -177,7 +177,7 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Disabled">
                         <VisualState.Setters>
-                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -186,6 +186,7 @@
     </Style>
 
     <Style TargetType="Span">
+        <Setter Property="FontFamily" Value="PalanquinDarkBold" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
     </Style>
 
