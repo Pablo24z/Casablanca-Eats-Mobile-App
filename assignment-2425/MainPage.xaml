@@ -3,30 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:assignment_2425"
              x:Class="assignment_2425.MainPage">
-    
-    
-    <Grid RowDefinitions="Auto,*">
-        <!-- Sticky Navbar -->
-        <local:StickyNavBar />
 
 
-        <!--Main Page Content-->
-        <ScrollView Grid.Row="1">
+    <Grid>
+        <!-- background img -->
+        <Image Source="fried_fish_veg.png"
+               Aspect="AspectFill"
+               Opacity="0.5"
+               IsVisible="True"
+               />
+        <BoxView BackgroundColor="#AA000000"
+                 InputTransparent="True" />
+
+
+        <Grid RowDefinitions="Auto,*">
+            <!-- Sticky Navbar -->
+            <local:StickyNavBar />
+
+
+            <!--Main Page Content-->
+            <ScrollView Grid.Row="1">
                 <VerticalStackLayout
                     Padding="20"
                     Spacing="24">
-            
+
                     <!-- Hero Section -->
 
-                    <Label Text="Welcome To Casablanca"
-                           Style="{StaticResource TitleStyle}"
-                           HorizontalOptions="Center"/>
+                    <Label Style="{StaticResource TitleStyle}"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Welcome To "
+                                          TextColor="#7ECB37" />
+                                <Span Text="Casablanca!"
+                                           TextColor="#FECA18" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
                     <Label Text="Bringing Authentic Caribbean Flavours to Hackney!"
                            FontSize="16"
-                           TextColor="#313131"
+                           TextColor="#FFFFFF"
                            HorizontalOptions="Center"/>
-            
+
                     <!-- feature section -->
 
                     <Frame BackgroundColor="#FECA18" CornerRadius="12" Padding="16">
@@ -36,7 +56,7 @@
                                   FontSize="14"
                                   HorizontalTextAlignment="Center"/>
                     </Frame>
-            
+
                     <!-- Benefits section -->
                     <StackLayout Spacing="12">
                         <Label Text="Why Casablanca?"
@@ -44,10 +64,10 @@
                                FontAttributes="Bold"
                                TextColor="#FA452D"/>
                         <Label Text="• Community Spirit: A vibrant, friendly vibe that feels like home.\n• Family-Run: Our values are in every dish.\n• Affordable Quality: High-quality food at reasonable prices.\n• Trusted by Hackney locals for years."
-                               TextColor="#222222"
+                               TextColor="#FFFFFF"
                                FontSize="14"/>
                     </StackLayout>
-            
+
                     <!-- popular dishes section -->
                     <StackLayout>
                         <Label Text="Popular Dishes"
@@ -60,27 +80,28 @@
                                     FontSize="14"/>
                         </Frame>
                         <Frame BackgroundColor="#F7F7F7" CornerRadius="10" Padding="10">
-                        <Label Text="Curry Goat - Tender, slow-cooked goat in a rich, aromatic curry sauce."
+                            <Label Text="Curry Goat - Tender, slow-cooked goat in a rich, aromatic curry sauce."
                                TextColor="#131313"
                                FontSize="14" />
-                    </Frame>
-                    <Frame BackgroundColor="#F7F7F7" CornerRadius="10" Padding="10">
-                        <Label Text="Fried Plantains - Golden, sweet, and crisp—perfect as a side or snack."
+                        </Frame>
+                        <Frame BackgroundColor="#F7F7F7" CornerRadius="10" Padding="10">
+                            <Label Text="Fried Plantains - Golden, sweet, and crisp—perfect as a side or snack."
                                TextColor="#131313"
                                FontSize="14" />
-                    </Frame>
-                </StackLayout>
-                <!-- CTA Section -->
-                <Frame BackgroundColor="#FA452D" CornerRadius="10" Padding="20">
-                    <Label Text="Enjoy 10% off your first dine-in experience! Order online or visit us today."
+                        </Frame>
+                    </StackLayout>
+                    <!-- CTA Section -->
+                    <Frame BackgroundColor="#FA452D" CornerRadius="10" Padding="20">
+                        <Label Text="Enjoy 10% off your first dine-in experience! Order online or visit us today."
                            TextColor="White"
                            FontSize="16"
                            HorizontalTextAlignment="Center" />
-                </Frame>
+                    </Frame>
 
-          
-            </VerticalStackLayout>
-        </ScrollView>
+
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
     </Grid>
 
 
