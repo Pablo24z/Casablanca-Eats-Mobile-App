@@ -12,9 +12,19 @@
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Padding="20">
                 <Label Text="Contact Us!"
-                       FontSize="24"
+                       FontSize="28"
                        FontAttributes="Bold"
                        HorizontalOptions="Center" />
+                <Label Text="Internal Font Name"
+           FontFamily="Palanquin Dark Bold"
+           FontSize="24"
+           TextColor="Lime" />
+
+                <Label Text="Alias Font Name"
+           FontFamily="PalanquinBold"
+           FontSize="24"
+           TextColor="Aqua" />
+
                 <!-- More menu content here -->
             </VerticalStackLayout>
         </ScrollView>
