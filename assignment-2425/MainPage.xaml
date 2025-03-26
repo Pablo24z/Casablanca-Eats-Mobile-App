@@ -20,7 +20,7 @@
                             Aspect="AspectFill"
                             Opacity="1"
                             />
-                    <BoxView BackgroundColor="#AA000000"
+                    <BoxView BackgroundColor="#99000000"
                                  InputTransparent="True" />
 
                     <VerticalStackLayout Padding="20"
@@ -48,9 +48,19 @@
                                TextColor="#FFFFFF"
                                HorizontalOptions="Center"
                                HorizontalTextAlignment="Center"/>
-
+                        <Image Source="dividers/wavesopacitybottom.svg"
+                           Aspect="AspectFill"
+                           HeightRequest="100"
+                               Rotation="180"
+                               WidthRequest="1000"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="End"
+                               Margin="0,0,0,-67"
+                           InputTransparent="True"
+                           ZIndex="3" />
                     </VerticalStackLayout>
                 </Grid>
+                
                 <!-- feature section -->
                 <VerticalStackLayout BackgroundColor="#131313"
                                          Padding="20"
@@ -104,23 +114,6 @@
                            HorizontalTextAlignment="Center" />
                     </Frame>
                 </VerticalStackLayout>
-
-                <!-- Footer -->
-                <VerticalStackLayout Background="#FFFFFF"
-                                     Padding="20"
-                                     Spacing="10">
-                    <Label Text="Contact Us"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           TextColor="#131313"
-                           HorizontalTextAlignment="Center"/>
-                    <Label Text="Address: 123 Hackney Road London, UK"
-                           FontSize="16"
-                           TextColor="#131313"
-                           HorizontalTextAlignment="Center" />
-                </VerticalStackLayout>
-
-
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

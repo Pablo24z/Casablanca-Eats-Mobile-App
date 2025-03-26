@@ -58,10 +58,18 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Data\slideshow.json" />
+	  <None Remove="Resources\Images\dividers\wavesopacity.svg" />
+	  <None Remove="Resources\Images\dividers\wavesopacitybottom.svg" />
+	  <None Remove="Resources\Images\dividers\wavesopacitytop.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <EmbeddedResource Include="Resources\Data\slideshow.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\dividers\wavesopacitybottom.svg" />
+	  <MauiImage Include="Resources\Images\dividers\wavesopacitytop.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
