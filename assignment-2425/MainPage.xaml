@@ -3,58 +3,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:assignment_2425"
              x:Class="assignment_2425.MainPage">
+    <Grid RowDefinitions="Auto,*">
+        <!-- Sticky Navbar -->
+        <local:StickyNavBar />
 
 
-    <Grid>
-        <!-- background img -->
-        <Image Source="fried_fish_veg.png"
-               Aspect="AspectFill"
-               Opacity="0.5"
-               IsVisible="True"
-               />
-        <BoxView BackgroundColor="#AA000000"
-                 InputTransparent="True" />
+        <!-- Scrollable Page -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout
+                    Spacing="0">
 
+                <!-- Hero Section -->
+                <Grid HeightRequest="710" x:Name="HeroSection">
+                    <!-- background img -->
+                    <Image x:Name="SlideshowImage"
+                            Aspect="AspectFill"
+                            Opacity="1"
+                            />
+                    <BoxView BackgroundColor="#AA000000"
+                                 InputTransparent="True" />
 
-        <Grid RowDefinitions="Auto,*">
-            <!-- Sticky Navbar -->
-            <local:StickyNavBar />
+                    <VerticalStackLayout Padding="20"
+                                             VerticalOptions="Center"
+                                             HorizontalOptions="Center"
+                                             Spacing="10">
+                        <Image Source="casalogosimple_light.png"
+                                Aspect="AspectFill"
+                                HeightRequest="350"/>
 
+                        <Label Style="{StaticResource TitleStyle}"
+                                HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Welcome To " TextColor="#7ECB37" Style ="{StaticResource TitleSpanStyle}" />
+                                    <Span Text="Casablanca!"
+                                                  TextColor="#FECA18" Style="{StaticResource TitleSpanStyle}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
 
-            <!--Main Page Content-->
-            <ScrollView Grid.Row="1">
-                <VerticalStackLayout
-                    Padding="20"
-                    Spacing="24">
+                        <Label Text="At Casablanca, we serve more than just food—we serve culture. Step inside for a taste of the islands with our signature jerk chicken, spicy curry goat, and much more."
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"/>
 
-                    <!-- Hero Section -->
-
-                    <Label Style="{StaticResource TitleStyle}"
-                           HorizontalOptions="Center"
-                           HorizontalTextAlignment="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Welcome To "
-                                          TextColor="#7ECB37" />
-                                <Span Text="Casablanca!"
-                                           TextColor="#FECA18" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-
-                    <Label Text="Bringing Authentic Caribbean Flavours to Hackney!"
-                           FontSize="16"
-                           TextColor="#FFFFFF"
-                           HorizontalOptions="Center"/>
-
-                    <!-- feature section -->
-
+                    </VerticalStackLayout>
+                </Grid>
+                <!-- feature section -->
+                <VerticalStackLayout BackgroundColor="#131313"
+                                         Padding="20"
+                                         Spacing="24">
                     <Frame BackgroundColor="#FECA18" CornerRadius="12" Padding="16">
                         <Label Text="Family-Owned. Tradition-Driven. Enjoy generation-old recipes passed down with love
-                                  from Hackney"
-                                  TextColor="#131313"
-                                  FontSize="14"
-                                  HorizontalTextAlignment="Center"/>
+                                      from Hackney"
+                                      TextColor="#131313"
+                                      FontSize="14"
+                                      HorizontalTextAlignment="Center"/>
                     </Frame>
 
                     <!-- Benefits section -->
@@ -97,11 +103,26 @@
                            FontSize="16"
                            HorizontalTextAlignment="Center" />
                     </Frame>
-
-
                 </VerticalStackLayout>
-            </ScrollView>
-        </Grid>
+
+                <!-- Footer -->
+                <VerticalStackLayout Background="#FFFFFF"
+                                     Padding="20"
+                                     Spacing="10">
+                    <Label Text="Contact Us"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#131313"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="Address: 123 Hackney Road London, UK"
+                           FontSize="16"
+                           TextColor="#131313"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+
+
+            </VerticalStackLayout>
+        </ScrollView>
     </Grid>
 
 
