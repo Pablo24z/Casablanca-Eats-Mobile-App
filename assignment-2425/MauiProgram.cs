@@ -11,7 +11,7 @@ namespace assignment_2425
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("PalanquinDark-Bold.ttf", "PalanquinDarkBold");
+                    fonts.AddFont("PalanquinDark-Bold.ttf", "PalanquinBold");
                     fonts.AddFont("PalanquinDark-Medium.ttf", "PalanquinDarkMedium");
                     fonts.AddFont("Palanquin-Medium.ttf", "PalanquinMedium");
                 });

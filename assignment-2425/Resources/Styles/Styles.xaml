@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Style x:Key="TitleStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="PalanquinDarkBold" />
+        <Setter Property="FontFamily" Value="PalanquinBold" />
         <Setter Property="FontSize" Value="30" />
         <Setter Property="TextColor" Value="#ffffff" />
     </Style>
@@ -185,8 +185,13 @@
         </Setter>
     </Style>
 
+    <Style x:Key="TitleSpanStyle" TargetType="Span">
+        <Setter Property="FontFamily" Value="PalanquinBold" />
+        <Setter Property="FontSize" Value="30" />
+    </Style>
+    
     <Style TargetType="Span">
-        <Setter Property="FontFamily" Value="PalanquinDarkBold" />
+        <Setter Property="FontFamily" Value="PalanquinBold" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
     </Style>
 
