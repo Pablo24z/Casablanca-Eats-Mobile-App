@@ -61,6 +61,10 @@
 	  <None Remove="Resources\Images\dividers\wavesopacity.svg" />
 	  <None Remove="Resources\Images\dividers\wavesopacitybottom.svg" />
 	  <None Remove="Resources\Images\dividers\wavesopacitytop.svg" />
+	  <None Remove="Resources\Images\menus\Casablanca - Menu Back.png" />
+	  <None Remove="Resources\Images\menus\Casablanca - Menu Front.png" />
+	  <None Remove="Resources\Images\menus\casablanca_menuback.png" />
+	  <None Remove="Resources\Images\menus\casablanca_menufront.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -70,6 +74,8 @@
 	<ItemGroup>
 	  <MauiImage Include="Resources\Images\dividers\wavesopacitybottom.svg" />
 	  <MauiImage Include="Resources\Images\dividers\wavesopacitytop.svg" />
+	  <MauiImage Include="Resources\Images\menus\casablanca_menuback.png" />
+	  <MauiImage Include="Resources\Images\menus\casablanca_menufront.png" />
 	</ItemGroup>
 
 	<ItemGroup>

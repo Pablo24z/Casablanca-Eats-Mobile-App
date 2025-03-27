@@ -2,8 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:assignment_2425"
-             x:Class="assignment_2425.MainPage">
+             x:Class="assignment_2425.MainPage"
+             x:Name="ThisPage">
     <Grid RowDefinitions="Auto,*">
+
         <!-- Sticky Navbar -->
         <local:StickyNavBar />
 
@@ -13,54 +15,81 @@
             <VerticalStackLayout
                     Spacing="0">
 
-                <!-- Hero Section -->
                 <Grid HeightRequest="710" x:Name="HeroSection">
-                    <!-- background img -->
+
+                    <!-- Background Image -->
                     <Image x:Name="SlideshowImage"
-                            Aspect="AspectFill"
-                            Opacity="1"
-                            />
+                           Aspect="AspectFill"
+                           Opacity="1" />
+
                     <BoxView BackgroundColor="#99000000"
-                                 InputTransparent="True" />
+                             InputTransparent="True" />
 
-                    <VerticalStackLayout Padding="20"
-                                             VerticalOptions="Center"
-                                             HorizontalOptions="Center"
-                                             Spacing="10">
-                        <Image Source="casalogosimple_light.png"
-                                Aspect="AspectFill"
-                                HeightRequest="350"/>
+                    <VerticalStackLayout x:Name="HeroContent"
+                         Padding="20"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         Spacing="10">
 
-                        <Label Style="{StaticResource TitleStyle}"
-                                HorizontalTextAlignment="Center">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="OrientationStates">
+                                <VisualState x:Name="Portrait">
+                                    <VisualState.StateTriggers>
+                                        <OrientationStateTrigger Orientation="Portrait" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter TargetName="SlideshowImage" Property="HeightRequest" Value="400" />
+                                        <Setter TargetName="HeroLogo" Property="HeightRequest" Value="350" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Landscape">
+                                    <VisualState.StateTriggers>
+                                        <OrientationStateTrigger Orientation="Landscape" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter TargetName="SlideshowImage" Property="HeightRequest" Value="440" />
+                                        <Setter TargetName="HeroLogo" Property="HeightRequest" Value="200" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+
+                        <Image x:Name="HeroLogo"
+                               Source="casalogosimple_dark.png"
+                               Aspect="AspectFit"
+                               HeightRequest="430"/>
+
+                        <Label x:Name="WelcomeLabel"
+                               Style="{StaticResource TitleStyle}"
+                               HorizontalTextAlignment="Center">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="Welcome To " TextColor="#7ECB37" Style ="{StaticResource TitleSpanStyle}" />
-                                    <Span Text="Casablanca!"
-                                                  TextColor="#FECA18" Style="{StaticResource TitleSpanStyle}"/>
+                                    <Span Text="Welcome To " TextColor="#7ECB37" Style="{StaticResource TitleSpanStyle}" />
+                                    <Span Text="Casablanca!" TextColor="#FECA18" Style="{StaticResource TitleSpanStyle}" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
 
-                        <Label Text="At Casablanca, we serve more than just food—we serve culture. Step inside for a taste of the islands with our signature jerk chicken, spicy curry goat, and much more."
+                        <Label Text="At Casablanca, we serve more than just food—we serve culture. Step inside for a taste of the islands..."
                                FontSize="15"
                                FontAttributes="Bold"
                                TextColor="#FFFFFF"
                                HorizontalOptions="Center"
                                HorizontalTextAlignment="Center"/>
+
                         <Image Source="dividers/wavesopacitybottom.svg"
-                           Aspect="AspectFill"
-                           HeightRequest="100"
+                               Aspect="AspectFill"
+                               HeightRequest="100"
                                Rotation="180"
                                WidthRequest="1000"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="End"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
                                Margin="0,0,0,-67"
-                           InputTransparent="True"
-                           ZIndex="3" />
+                               ZIndex="3" />
                     </VerticalStackLayout>
                 </Grid>
-                
+
                 <!-- feature section -->
                 <VerticalStackLayout BackgroundColor="#131313"
                                          Padding="20"
