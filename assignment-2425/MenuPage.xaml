@@ -11,12 +11,17 @@
 
         <!-- Page Content -->
         <ScrollView Grid.Row="1">
-            <VerticalStackLayout Padding="20">
-                <Label Text="USE MENU IMAGES TO SIMPLIFY, COMPLEX MENU WILL BE ADDED IN ORDER PAGE, MAKE SIMPLIER FOR YOURSELF"
-                       FontSize="24"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center" />
+            <VerticalStackLayout Padding="0">
                 <!-- More menu content here -->
+
+                <Image Source="menus/casablanca_menufront.png"
+                       HeightRequest="560"
+                       Aspect="AspectFit"
+                       WidthRequest="1000" />
+                <Image Source="menus/casablanca_menuback.png"
+                       HeightRequest="560"
+                       Aspect="AspectFit"
+                       WidthRequest="1000" />
             </VerticalStackLayout>
         </ScrollView>
 
