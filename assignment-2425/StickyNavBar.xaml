@@ -34,7 +34,7 @@
                 TextColor="#131313"
                 FontAttributes="Bold"
                 Grid.Column="1"
-                Padding="10,0"/>
+                Padding="8,0"/>
 
         <Button Text="Contact"
                 Clicked="OnContactClicked"

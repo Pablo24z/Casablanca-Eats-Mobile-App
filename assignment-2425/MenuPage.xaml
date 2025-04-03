@@ -2,28 +2,49 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:assignment_2425"
-             x:Class="assignment_2425.MenuPage">
+             x:Class="assignment_2425.MenuPage"
+             BackgroundColor="#131313">
 
     <Grid RowDefinitions="Auto,*">
 
         <!-- Sticky Nav -->
         <local:StickyNavBar />
+        
+        <!-- Header -->
+        <Label Grid.Row="1"
+               Text="Menu"
+               Style="{StaticResource TitleStyle}"
+               HorizontalOptions="Center"
+               Margin="0,20,0,10"
+               />
+        <!-- Menu Carousel -->
+        <CarouselView Grid.Row="2"
+                      x:Name="MenuCarousel"
+                      ItemsSource="{Binding MenuImages}"
+                      IndicatorView="MenuIndicators"
+                      Loop="True">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Image Source="{Binding}"
+                               Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnImageTapped" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        
+        <!-- Dots for menu carousel -->
+        <IndicatorView Grid.Row="3"
+                       x:Name="MenuIndicators"
+                       IndicatorColor="#FFFFFF"
+                       SelectedIndicatorColor="#FECA18"
+                       HorizontalOptions="Center"
+                       Margin="0,10" />
 
-        <!-- Page Content -->
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout Padding="0">
-                <!-- More menu content here -->
-
-                <Image Source="menus/casablanca_menufront.png"
-                       HeightRequest="560"
-                       Aspect="AspectFit"
-                       WidthRequest="1000" />
-                <Image Source="menus/casablanca_menuback.png"
-                       HeightRequest="560"
-                       Aspect="AspectFit"
-                       WidthRequest="1000" />
-            </VerticalStackLayout>
-        </ScrollView>
 
     </Grid>
 </ContentPage>
