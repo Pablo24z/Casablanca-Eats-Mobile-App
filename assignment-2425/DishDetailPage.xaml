@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="assignment_2425.DishDetailPage"
+             xmlns:models="clr-namespace:assignment_2425.Models"
+             BackgroundColor="#1E1E1E"
+             NavigationPage.HasNavigationBar="False">
+
+
+
+    <Grid Padding="16">
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Label Text="{Binding Name}"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+                <Label Text="{Binding Price}"
+                       FontSize="20"
+                       TextColor="#FECA18" />
+                <Label Text="{Binding Description}"
+                       FontSize="16"
+                       TextColor="White" />
+
+                <Button Text="Add to Basket"
+                        BackgroundColor="#7ECB37"
+                        TextColor="White"
+                        CornerRadius="10"/>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <ImageButton Source="close_icon.png"
+                     Clicked="OnCloseClicked"
+                     WidthRequest="40"
+                     HeightRequest="40"
+                     BackgroundColor="Transparent"
+                     HorizontalOptions="End"
+                     VerticalOptions="Start" />
+    </Grid>
+</ContentPage>

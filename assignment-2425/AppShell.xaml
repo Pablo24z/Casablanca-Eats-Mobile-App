@@ -1,6 +1,7 @@
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:pages="clr-namespace:assignment_2425"
+       xmlns:local="clr-namespace:assignment_2425"
        x:Class="assignment_2425.AppShell"
        Shell.FlyoutBehavior="Disabled">
 
@@ -9,6 +10,8 @@
     <ShellContent Route="MenuPage" ContentTemplate="{DataTemplate pages:MenuPage}" />
     <ShellContent Route="OrderPage" ContentTemplate="{DataTemplate pages:OrderPage}" />
     <ShellContent Route="ContactPage" ContentTemplate="{DataTemplate pages:ContactPage}" />
-    <ShellContent Route="FullscreenImagePage" ContentTemplate="{DataTemplate local:FullscreenImagePage}" />
+    <ShellContent Route="FullscreenImagePage" ContentTemplate="{DataTemplate pages:FullscreenImagePage}" />
+    <ShellContent Route="DishDetailPage" ContentTemplate="{DataTemplate local:DishDetailPage}" />
+
 
 </Shell>

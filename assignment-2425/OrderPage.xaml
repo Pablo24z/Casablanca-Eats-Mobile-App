@@ -1,23 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:assignment_2425"
-             x:Class="assignment_2425.OrderPage">
+             x:Class="assignment_2425.OrderPage"
+             BackgroundColor="#131313">
 
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,Auto,Auto,*">
 
         <!-- Sticky Nav -->
-        <local:StickyNavBar />
+        <local:StickyNavBar Grid.Row="0" />
 
-        <!-- Page Content -->
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout Padding="20">
-                <Label Text="Your Order"
-                       FontSize="24"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center" />
-                <!-- More menu content here -->
-            </VerticalStackLayout>
+        <!-- 🟡🟢 Menu Title with Branding -->
+        <Label Grid.Row="1"
+           Style="{StaticResource TitleStyle}"
+           HorizontalOptions="Center"
+           Margin="0,20,0,10"
+           HorizontalTextAlignment="Center"
+           BackgroundColor="#131313">
+
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Our " TextColor="#7ECB37" FontFamily="Arial" FontSize="40"/>
+                    <Span Text="Menu" TextColor="#FECA18" Style="{StaticResource TitleStyle}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        
+
+        <!-- Horizontal Category Tabs -->
+        <ScrollView Grid.Row="2"
+                Orientation="Horizontal"
+                BackgroundColor="#131313"
+                Padding="10,5">
+            <HorizontalStackLayout Spacing="12">
+                <Button Text="Meals" Clicked="ScrollToMeals" />
+                <Button Text="Portions" Clicked="ScrollToPortions" />
+                <Button Text="Snacks" Clicked="ScrollToSnacks" />
+                <Button Text="Soups" Clicked="ScrollToSoups" />
+                <Button Text="Drinks" Clicked="ScrollToDrinks" />
+            </HorizontalStackLayout>
         </ScrollView>
 
+        <!-- Dishes List -->
+        <CollectionView x:Name="DishList"
+                    Grid.Row="3"
+                    ItemsSource="{Binding Dishes}"
+                    SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="10"
+                       Padding="10"
+                       BackgroundColor="#1E1E1E"
+                       CornerRadius="10">
+                        <Label Text="{Binding Name}"
+                           TextColor="White"
+                           FontFamily="PalanquinDarkMedium"
+                           FontSize="16">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDishTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
 </ContentPage>
