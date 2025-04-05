@@ -20,6 +20,8 @@
              HorizontalOptions="End"
              VerticalOptions="Start"
              Margin="10"
+             IsVisible="True"
+             ZIndex="2"
              Clicked="CloseImage" />
 
     </Grid>

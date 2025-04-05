@@ -26,8 +26,9 @@
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Image Source="{Binding}"
-                               Aspect="AspectFit">
+                        <Image Source="{Binding ImageSource}"
+                               Aspect="AspectFit"
+                               BindingContext="{Binding .}">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnImageTapped" />
                             </Image.GestureRecognizers>
