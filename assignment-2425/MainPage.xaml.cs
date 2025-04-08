@@ -16,6 +16,16 @@ namespace assignment_2425
         {
             InitializeComponent();
             LoadSlideshowImagesFromJsonFile();
+
+            SetHeroLogo(App.Current.RequestedTheme);
+
+            App.Current.RequestedThemeChanged += (s, e) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    SetHeroLogo(e.RequestedTheme);
+                });
+            };
         }
 
         private void LoadSlideshowImagesFromJsonFile()
@@ -50,6 +60,17 @@ namespace assignment_2425
             await SlideshowImage.FadeTo(0, 1000);
             SlideshowImage.Source = _slideshowImages[_currentImangeIndex];
             await SlideshowImage.FadeTo(1, 2000);
+        }
+
+        private async void SetHeroLogo(AppTheme theme)
+        {
+            await HeroLogo.FadeTo(0, 150); // fade out
+
+            HeroLogo.Source = theme == AppTheme.Dark
+                ? "casalogosimple_dark.png"
+                : "casalogosimple_light.png";
+
+            await HeroLogo.FadeTo(1, 250); // fade in
         }
 
 
