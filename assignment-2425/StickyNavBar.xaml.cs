@@ -4,54 +4,63 @@ namespace assignment_2425;
 
 public partial class StickyNavBar : ContentView
 {
-    private bool _isDarkMode = false;
-    private bool _isFlyoutVisible = false;
+    private bool isDarkMode = false;
 
     public StickyNavBar()
     {
         InitializeComponent();
+        SizeChanged += StickyNavBar_SizeChanged;
+    }
+
+    private void StickyNavBar_SizeChanged(object sender, EventArgs e)
+    {
+        double width = Width;
+        bool isPhone = width < 600;
+
+        NavButtonsPanel.IsVisible = !isPhone;
+        HamburgerButton.IsVisible = isPhone;
+
+        // Delay hiding flyout to avoid glitch
+        Device.BeginInvokeOnMainThread(() =>
+        {
+            if (!isPhone)
+                FlyoutMenu.IsVisible = false;
+        });
     }
 
     private async void OnLogoTapped(object sender, EventArgs e)
     {
+        Device.BeginInvokeOnMainThread(() => FlyoutMenu.IsVisible = false);
         await Shell.Current.GoToAsync("//MainPage");
     }
 
     private async void OnMenuClicked(object sender, EventArgs e)
     {
+        Device.BeginInvokeOnMainThread(() => FlyoutMenu.IsVisible = false);
         await Shell.Current.GoToAsync("//MenuPage");
-        ToggleFlyout(false);
     }
 
     private async void OnContactClicked(object sender, EventArgs e)
     {
+        Device.BeginInvokeOnMainThread(() => FlyoutMenu.IsVisible = false);
         await Shell.Current.GoToAsync("//ContactPage");
-        ToggleFlyout(false);
     }
 
     private async void OnOrderClicked(object sender, EventArgs e)
     {
+        Device.BeginInvokeOnMainThread(() => FlyoutMenu.IsVisible = false);
         await Shell.Current.GoToAsync("//OrderPage");
-        ToggleFlyout(false);
     }
 
     private void OnHamburgerClicked(object sender, EventArgs e)
     {
-        _isFlyoutVisible = !_isFlyoutVisible;
-        FlyoutMenu.IsVisible = _isFlyoutVisible;
-    }
-
-    private void ToggleFlyout(bool visible)
-    {
-        _isFlyoutVisible = visible;
-        FlyoutMenu.IsVisible = visible;
+        FlyoutMenu.IsVisible = !FlyoutMenu.IsVisible;
     }
 
     private void OnToggleThemeClicked(object sender, EventArgs e)
     {
-        _isDarkMode = !_isDarkMode;
-        App.Current.UserAppTheme = _isDarkMode ? AppTheme.Dark : AppTheme.Light;
-
-        ThemeToggleButton.Source = _isDarkMode ? "sun_icon.svg" : "moon_icon.svg";
+        isDarkMode = !isDarkMode;
+        App.Current.UserAppTheme = isDarkMode ? AppTheme.Dark : AppTheme.Light;
+        ThemeToggleButton.Source = isDarkMode ? "sun_icon.svg" : "moon_icon.svg";
     }
 }

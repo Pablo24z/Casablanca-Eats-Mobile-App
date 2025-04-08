@@ -5,67 +5,97 @@
              BackgroundColor="#FECA18"
              HeightRequest="70">
 
-    <Grid x:Name="NavRoot"
-          Padding="10"
-          ColumnSpacing="10"
-          RowDefinitions="Auto,Auto">
+    <AbsoluteLayout>
+        <!-- Sticky Nav Grid -->
+        <Grid x:Name="NavRoot"
+              Padding="10"
+              ColumnSpacing="10"
+              RowDefinitions="Auto,Auto"
+              BackgroundColor="#FECA18"
+              ZIndex="999"
+              AbsoluteLayout.LayoutBounds="0,0,1,70"
+              AbsoluteLayout.LayoutFlags="WidthProportional">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-        <!-- Logo -->
-        <Image Source="casalonglogo_light.png"
-               HeightRequest="40"
-               WidthRequest="125"
-               Aspect="AspectFit"
-               VerticalOptions="Center"
-               Grid.Column="0">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnLogoTapped" />
-            </Image.GestureRecognizers>
-        </Image>
+            <!-- Logo -->
+            <Image Source="casalonglogo_light.png"
+                   HeightRequest="40"
+                   WidthRequest="125"
+                   Aspect="AspectFit"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"
+                   Grid.Column="0">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnLogoTapped" />
+                </Image.GestureRecognizers>
+            </Image>
 
-        <!-- Theme Toggle Button -->
-        <ImageButton x:Name="ThemeToggleButton"
-                     Source="moon_icon.svg"
-                     WidthRequest="30"
-                     HeightRequest="30"
-                     BackgroundColor="Transparent"
-                     Clicked="OnToggleThemeClicked"
-                     Grid.Column="1" />
+            <!-- Tablet/Desktop Nav Buttons -->
+            <StackLayout x:Name="NavButtonsPanel"
+                         Orientation="Horizontal"
+                         Spacing="20"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         Grid.ColumnSpan="2"
+                         Grid.Column="1"
+                         IsVisible="False">
+                <Button Text="Menu" Style="{StaticResource NavBarButtonStyle}" Clicked="OnMenuClicked" />
+                <Button Text="Contact" Style="{StaticResource NavBarButtonStyle}" Clicked="OnContactClicked" />
+                <Button Text="Order" Style="{StaticResource NavBarButtonStyle}" Clicked="OnOrderClicked" />
+            </StackLayout>
 
-        <!-- Hamburger Menu -->
-        <ImageButton x:Name="HamburgerButton"
-                     Source="menu_icon.svg"
-                     WidthRequest="30"
-                     HeightRequest="30"
-                     BackgroundColor="Transparent"
-                     Clicked="OnHamburgerClicked"
-                     Grid.Column="2" />
+            <!-- Theme Toggle -->
+            <ImageButton x:Name="ThemeToggleButton"
+                         Source="moon_icon.svg"
+                         WidthRequest="30"
+                         HeightRequest="30"
+                         BackgroundColor="Transparent"
+                         Clicked="OnToggleThemeClicked"
+                         Grid.Column="2" />
 
-        <!-- Flyout Menu Panel -->
-        <VerticalStackLayout x:Name="FlyoutMenu"
-                             BackgroundColor="#FECA18"
-                             Padding="10"
-                             Spacing="10"
-                             IsVisible="False"
-                             Grid.ColumnSpan="3"
-                             Grid.Row="1"
-                             ZIndex="99">
-            <Button Text="Menu"
-                    Clicked="OnMenuClicked"
-                    Style="{StaticResource NavBarButtonStyle}" />
+            <!-- Hamburger (Mobile Only) -->
+            <ImageButton x:Name="HamburgerButton"
+                         Source="menu_icon.svg"
+                         WidthRequest="30"
+                         HeightRequest="30"
+                         BackgroundColor="Transparent"
+                         Clicked="OnHamburgerClicked"
+                         Grid.Column="3"
+                         IsVisible="True" />
 
-            <Button Text="Contact"
-                    Clicked="OnContactClicked"
-                    Style="{StaticResource NavBarButtonStyle}" />
 
-            <Button Text="Order"
-                    Clicked="OnOrderClicked"
-                    Style="{StaticResource NavBarButtonStyle}" />
-        </VerticalStackLayout>
-    </Grid>
+            <!-- Flyout Menu (Dropdown) -->
+            <Frame x:Name="FlyoutMenu"
+                   BackgroundColor="#FECA18"
+                   BorderColor="#131313"
+                   CornerRadius="0"
+                   Padding="10"
+                   IsVisible="False"
+                   HasShadow="True"
+                   InputTransparent="False"
+                   ZIndex="9999"
+                   AbsoluteLayout.LayoutBounds="0,70,1,AutoSize"
+                   AbsoluteLayout.LayoutFlags="WidthProportional">
+
+                <VerticalStackLayout Spacing="10"
+                            InputTransparent="False">
+                    <Button Text="Menu"
+                            Clicked="OnMenuClicked"
+                            Style="{StaticResource NavBarButtonStyle}" />
+                    <Button Text="Contact"
+                            Clicked="OnContactClicked"
+                            Style="{StaticResource NavBarButtonStyle}" />
+                    <Button Text="Order"
+                            Clicked="OnOrderClicked"
+                            Style="{StaticResource NavBarButtonStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+    </AbsoluteLayout>
 </ContentView>
