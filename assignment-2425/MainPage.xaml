@@ -3,75 +3,74 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:assignment_2425"
              x:Class="assignment_2425.MainPage"
-             x:Name="ThisPage"
-             BackgroundColor="White">
+             x:Name="ThisPage">
 
-    <Grid RowDefinitions="Auto,*">
+    <AbsoluteLayout>
 
-        <!-- Sticky Navbar -->
-        <local:StickyNavBar />
+        <!-- Sticky Navbar absolutely positioned at top -->
+        <local:StickyNavBar 
+            AbsoluteLayout.LayoutBounds="0,0,1,70"
+            AbsoluteLayout.LayoutFlags="WidthProportional"
+            ZIndex="999" />
 
-        <!-- Scrollable Page -->
-        <ScrollView Grid.Row="1">
+        <!-- Main content below navbar -->
+        <ScrollView AbsoluteLayout.LayoutBounds="0,70,1,1" 
+                    AbsoluteLayout.LayoutFlags="All">
+
             <VerticalStackLayout Spacing="0">
-
                 <!-- Hero Section -->
-                <Grid x:Name="HeroSection" HeightRequest="{OnPlatform Android=750, iOS=750, MacCatalyst=800}">
+                <Grid x:Name="HeroSection" HeightRequest="710">
                     <!-- Background Image -->
                     <Image x:Name="SlideshowImage"
                            Aspect="AspectFill"
-                           VerticalOptions="FillAndExpand"
-                           HorizontalOptions="FillAndExpand" />
+                           Opacity="1" />
 
-                    <!-- Overlay -->
                     <BoxView BackgroundColor="#99000000"
-                             InputTransparent="True"
-                             VerticalOptions="FillAndExpand"
-                             HorizontalOptions="FillAndExpand" />
+                             InputTransparent="True" />
 
-                    <!-- Hero Content -->
                     <VerticalStackLayout x:Name="HeroContent"
                                          Padding="20"
                                          VerticalOptions="Center"
                                          HorizontalOptions="Center"
-                                         Spacing="10"
-                                         WidthRequest="{OnIdiom Phone=360, Tablet=600}">
+                                         Spacing="10">
 
                         <Image x:Name="HeroLogo"
-                               Source="casalogosimple_dark.png"
                                Aspect="AspectFit"
-                               HeightRequest="{OnIdiom Phone=300, Tablet=450}" />
+                               HeightRequest="430"
+                               Opacity="0" />
 
                         <Label x:Name="WelcomeLabel"
                                Style="{StaticResource TitleStyle}"
                                HorizontalTextAlignment="Center">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="Welcome To " TextColor="#7ECB37" Style="{StaticResource TitleSpanStyle}" />
-                                    <Span Text="Casablanca!" TextColor="#FECA18" Style="{StaticResource TitleSpanStyle}" />
+                                    <Span Text="Welcome To "
+                                          TextColor="#7ECB37"
+                                          Style="{StaticResource TitleSpanStyle}" />
+                                    <Span Text="Casablanca!"
+                                          TextColor="#FECA18"
+                                          Style="{StaticResource TitleSpanStyle}" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
 
                         <Label Text="At Casablanca, we serve more than just food—we serve culture. Step inside for a taste of the islands..."
-                               FontSize="{OnIdiom Phone=14, Tablet=18}"
+                               FontSize="15"
                                FontAttributes="Bold"
-                               TextColor="White"
+                               TextColor="#FFFFFF"
                                HorizontalOptions="Center"
-                               HorizontalTextAlignment="Center"
-                               MaxLines="4"
-                               LineBreakMode="WordWrap" />
-                    </VerticalStackLayout>
+                               HorizontalTextAlignment="Center"/>
 
-                    <!-- SVG Divider -->
-                    <Image Source="dividers/wavesopacitybottom.svg"
-                           Aspect="AspectFill"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="End"
-                           Rotation="180"
-                           HeightRequest="80"
-                           Margin="0,-1,0,-1"
-                           ZIndex="3" />
+                        <Image Source="dividers/wavesopacitybottom.svg"
+                               Aspect="AspectFill"
+                               HeightRequest="100"
+                               Rotation="180"
+                               WidthRequest="1300"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
+                               Margin="0,0,0,-67"
+                               ZIndex="3" />
+                    </VerticalStackLayout>
                 </Grid>
 
                 <!-- Feature Section -->
@@ -79,56 +78,50 @@
                                      Padding="20"
                                      Spacing="24">
 
-                    <!-- Intro Frame -->
                     <Frame BackgroundColor="#FECA18" CornerRadius="12" Padding="16">
                         <Label Text="Family-Owned. Tradition-Driven. Enjoy generation-old recipes passed down with love from Hackney"
                                TextColor="#131313"
-                               FontSize="{OnIdiom Phone=14, Tablet=18}"
-                               HorizontalTextAlignment="Center" />
+                               FontSize="14"
+                               HorizontalTextAlignment="Center"/>
                     </Frame>
 
                     <!-- Benefits Section -->
-                    <VerticalStackLayout>
+                    <StackLayout Spacing="12">
                         <Label Text="Why Casablanca?"
-                               FontSize="{OnIdiom Phone=20, Tablet=26}"
+                               FontSize="20"
                                FontAttributes="Bold"
-                               TextColor="#FA452D" />
-
-                        <StackLayout>
-                            <Label Text="• Community Spirit: A vibrant, friendly vibe that feels like home." TextColor="White" FontSize="{OnIdiom Phone=14, Tablet=16}" />
-                            <Label Text="• Family-Run: Our values are in every dish." TextColor="White" FontSize="{OnIdiom Phone=14, Tablet=16}" />
-                            <Label Text="• Affordable Quality: High-quality food at reasonable prices." TextColor="White" FontSize="{OnIdiom Phone=14, Tablet=16}" />
-                            <Label Text="• Trusted by Hackney locals for years." TextColor="White" FontSize="{OnIdiom Phone=14, Tablet=16}" />
-                        </StackLayout>
-                    </VerticalStackLayout>
+                               TextColor="#FA452D"/>
+                        <Label Text="• Community Spirit: A vibrant, friendly vibe that feels like home."
+                               TextColor="#FFFFFF" FontSize="14"/>
+                        <Label Text="• Family-Run: Our values are in every dish."
+                               TextColor="#FFFFFF" FontSize="14"/>
+                        <Label Text="• Affordable Quality: High-quality food at reasonable prices."
+                               TextColor="#FFFFFF" FontSize="14"/>
+                        <Label Text="• Trusted by Hackney locals for years."
+                               TextColor="#FFFFFF" FontSize="14"/>
+                    </StackLayout>
 
                     <!-- Popular Dishes Section -->
-                    <VerticalStackLayout>
+                    <StackLayout>
                         <Label Text="Popular Dishes"
-                               FontSize="{OnIdiom Phone=20, Tablet=26}"
+                               FontSize="20"
                                FontAttributes="Bold"
-                               TextColor="#7ECB37" />
-
-                        <Frame BackgroundColor="#F7F7F7" CornerRadius="10" Padding="10">
+                               TextColor="#7ECB37"/>
+                        <Frame BackgroundColor="#f7f7f7" CornerRadius="10" Padding="10">
                             <Label Text="Jerk Chicken - Marinated in traditional Caribbean spices, grilled to perfection"
-                                   TextColor="#131313"
-                                   FontSize="14" />
+                                   TextColor="#131313" FontSize="14"/>
                         </Frame>
-
                         <Frame BackgroundColor="#F7F7F7" CornerRadius="10" Padding="10">
                             <Label Text="Curry Goat - Tender, slow-cooked goat in a rich, aromatic curry sauce."
-                                   TextColor="#131313"
-                                   FontSize="14" />
+                                   TextColor="#131313" FontSize="14" />
                         </Frame>
-
                         <Frame BackgroundColor="#F7F7F7" CornerRadius="10" Padding="10">
                             <Label Text="Fried Plantains - Golden, sweet, and crisp—perfect as a side or snack."
-                                   TextColor="#131313"
-                                   FontSize="14" />
+                                   TextColor="#131313" FontSize="14" />
                         </Frame>
-                    </VerticalStackLayout>
+                    </StackLayout>
 
-                    <!-- CTA -->
+                    <!-- CTA Section -->
                     <Frame BackgroundColor="#FA452D" CornerRadius="10" Padding="20">
                         <Label Text="Enjoy 10% off your first dine-in experience! Order online or visit us today."
                                TextColor="White"
@@ -138,5 +131,6 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>
-    </Grid>
+
+    </AbsoluteLayout>
 </ContentPage>
