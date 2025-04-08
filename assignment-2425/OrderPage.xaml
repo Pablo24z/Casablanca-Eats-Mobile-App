@@ -20,8 +20,8 @@
 
             <Label.FormattedText>
                 <FormattedString>
-                    <Span Text="Our " TextColor="#7ECB37" FontFamily="Arial" FontSize="40"/>
-                    <Span Text="Menu" TextColor="#FECA18" Style="{StaticResource TitleStyle}" />
+                    <Span Text="Our " TextColor="#7ECB37" Style="{StaticResource TitleSpanStyle}" FontSize="40"/>
+                    <Span Text="Menu" TextColor="#FECA18" Style="{StaticResource TitleSpanStyle}" FontSize="40" />
                 </FormattedString>
             </Label.FormattedText>
         </Label>
