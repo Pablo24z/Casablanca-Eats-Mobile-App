@@ -2,15 +2,18 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="assignment_2425.StickyNavBar"
-             HeightRequest="70"
-             BackgroundColor="#FECA18">
+             BackgroundColor="#FECA18"
+             HeightRequest="70">
 
-    <Grid Padding="10" ColumnSpacing="15">
+    <Grid x:Name="NavRoot"
+          Padding="10"
+          ColumnSpacing="10"
+          RowDefinitions="Auto,Auto">
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <!-- Logo -->
@@ -19,42 +22,50 @@
                WidthRequest="125"
                Aspect="AspectFit"
                VerticalOptions="Center"
-               Margin="0"
                Grid.Column="0">
             <Image.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnLogoTapped"/>
+                <TapGestureRecognizer Tapped="OnLogoTapped" />
             </Image.GestureRecognizers>
         </Image>
 
-        <!-- Nav Buttons -->
-        <Button Text="Menu"
-                Clicked="OnMenuClicked"
-                BackgroundColor="Transparent"
-                FontSize="Subtitle"
-                TextColor="#131313"
-                FontAttributes="Bold"
-                Grid.Column="1"
-                Padding="8,0"/>
+        <!-- Theme Toggle Button -->
+        <ImageButton x:Name="ThemeToggleButton"
+                     Source="moon_icon.svg"
+                     WidthRequest="30"
+                     HeightRequest="30"
+                     BackgroundColor="Transparent"
+                     Clicked="OnToggleThemeClicked"
+                     Grid.Column="1" />
 
-        <Button Text="Contact"
-                Clicked="OnContactClicked"
-                BackgroundColor="Transparent"
-                FontSize="Subtitle"
-                TextColor="#131313"
-                FontAttributes="Bold"
-                Grid.Column="2"
-                Padding="10,0"/>
+        <!-- Hamburger Menu -->
+        <ImageButton x:Name="HamburgerButton"
+                     Source="menu_icon.svg"
+                     WidthRequest="30"
+                     HeightRequest="30"
+                     BackgroundColor="Transparent"
+                     Clicked="OnHamburgerClicked"
+                     Grid.Column="2" />
 
+        <!-- Flyout Menu Panel -->
+        <VerticalStackLayout x:Name="FlyoutMenu"
+                             BackgroundColor="#FECA18"
+                             Padding="10"
+                             Spacing="10"
+                             IsVisible="False"
+                             Grid.ColumnSpan="3"
+                             Grid.Row="1"
+                             ZIndex="99">
+            <Button Text="Menu"
+                    Clicked="OnMenuClicked"
+                    Style="{StaticResource NavBarButtonStyle}" />
 
+            <Button Text="Contact"
+                    Clicked="OnContactClicked"
+                    Style="{StaticResource NavBarButtonStyle}" />
 
-        <Button Text="Order"
-                Clicked="OnOrderClicked"
-                BackgroundColor="Transparent"
-                FontSize="Subtitle"
-                TextColor="#131313"
-                FontAttributes="Bold"
-                Grid.Column="3"
-                Padding="10,0"/>
-
+            <Button Text="Order"
+                    Clicked="OnOrderClicked"
+                    Style="{StaticResource NavBarButtonStyle}" />
+        </VerticalStackLayout>
     </Grid>
 </ContentView>
