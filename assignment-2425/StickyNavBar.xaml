@@ -42,7 +42,7 @@
                          Spacing="20"
                          VerticalOptions="Center"
                          HorizontalOptions="Center"
-                         Grid.ColumnSpan="2"
+                         Grid.ColumnSpan="1"
                          Grid.Column="1"
                          IsVisible="False">
                 <Button Text="Menu" Style="{StaticResource NavBarButtonStyle}" Clicked="OnMenuClicked" />
@@ -73,28 +73,28 @@
             <!-- Flyout Menu (Dropdown) -->
             <Frame x:Name="FlyoutMenu"
                    BackgroundColor="#FECA18"
-                   BorderColor="#131313"
+                   BorderColor="Transparent"
                    CornerRadius="0"
-                   Padding="10"
+                   Padding="0"
                    IsVisible="False"
-                   HasShadow="True"
+                   HasShadow="False"
                    InputTransparent="False"
-                   ZIndex="9999"
+                   ZIndex="99"
                    AbsoluteLayout.LayoutBounds="0,70,1,AutoSize"
                    AbsoluteLayout.LayoutFlags="WidthProportional">
 
-                <VerticalStackLayout Spacing="10"
+                <HorizontalStackLayout Spacing="8"
                             InputTransparent="False">
-                    <Button Text="Menu"
-                            Clicked="OnMenuClicked"
-                            Style="{StaticResource NavBarButtonStyle}" />
                     <Button Text="Contact"
                             Clicked="OnContactClicked"
+                            Style="{StaticResource NavBarButtonStyle}" />
+                    <Button Text="Menu"
+                            Clicked="OnMenuClicked"
                             Style="{StaticResource NavBarButtonStyle}" />
                     <Button Text="Order"
                             Clicked="OnOrderClicked"
                             Style="{StaticResource NavBarButtonStyle}" />
-                </VerticalStackLayout>
+                </HorizontalStackLayout>
             </Frame>
         </Grid>
     </AbsoluteLayout>
