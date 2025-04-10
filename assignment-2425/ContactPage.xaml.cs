@@ -12,18 +12,31 @@ public partial class ContactPage : ContentPage
 
     private async void OnSubmitClicked(object sender, EventArgs e)
     {
-        // Placeholder logic
-        string name = NameEntry.Text;
-        string email = EmailEntry.Text;
-        string message = MessageEditor.Text;
+        bool hasError = false;
 
-        if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(message))
+        if (string.IsNullOrWhiteSpace(NameEntry.Text))
         {
-            await DisplayAlert("Missing Info", "Please fill out all fields.", "OK");
+            NameEntry.BackgroundColor = Colors.DarkRed;
+            hasError = true;
+        }
+        if (string.IsNullOrWhiteSpace(EmailEntry.Text))
+        {
+            EmailEntry.BackgroundColor = Colors.DarkRed;
+            hasError = true;
+        }
+        if (string.IsNullOrWhiteSpace(MessageEditor.Text))
+        {
+            MessageEditor.BackgroundColor = Colors.DarkRed;
+            hasError = true;
+        }
+
+        if (hasError)
+        {
+            await DisplayAlert("Error", "Please complete all fields.", "OK");
             return;
         }
 
-        if (message.Length > 500)
+        if (MessageEditor.Text.Length > 500)
         {
             await DisplayAlert("Too Long", "Message must be 500 characters or fewer.", "OK");
             return;
@@ -31,15 +44,12 @@ public partial class ContactPage : ContentPage
 
         await DisplayAlert("Thank You", "Your message has been submitted.", "OK");
 
-        // Reset form
         NameEntry.Text = "";
         EmailEntry.Text = "";
         MessageEditor.Text = "";
-    }
 
-    private void OnMapTapped(object sender, EventArgs e)
-    {
-        string url = "https://www.google.com/maps/place/6+Chatsworth+Rd,+London+E5+0LP";
-        Launcher.OpenAsync(new Uri(url));
+        NameEntry.BackgroundColor = Color.FromArgb("#1C1C1C");
+        EmailEntry.BackgroundColor = Color.FromArgb("#1C1C1C");
+        MessageEditor.BackgroundColor = Color.FromArgb("#1C1C1C");
     }
 }

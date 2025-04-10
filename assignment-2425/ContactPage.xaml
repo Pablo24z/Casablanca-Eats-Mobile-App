@@ -6,116 +6,108 @@
              BackgroundColor="#131313">
 
     <Grid RowDefinitions="Auto,*">
-
         <!-- Sticky Navbar -->
         <local:StickyNavBar Grid.Row="0" />
 
         <!-- Scrollable Content -->
         <ScrollView Grid.Row="1">
-            <VerticalStackLayout Spacing="30"
-                                 Padding="20"
-                                 BackgroundColor="#131313">
+            <VerticalStackLayout Spacing="30" Padding="20">
 
                 <!-- Header -->
                 <Label Text="Contact Us"
                        Style="{StaticResource TitleStyle}"
-                       HorizontalOptions="Center"
-                       Margin="0,20,0,0"
-                       HorizontalTextAlignment="Center" />
+                       HorizontalTextAlignment="Center"
+                       Margin="0,20,0,0"/>
 
                 <!-- Contact Form -->
                 <VerticalStackLayout Spacing="15">
                     <Entry x:Name="NameEntry"
                            Placeholder="Your Name"
+                           BackgroundColor="#1C1C1C"
                            PlaceholderColor="#AAAAAA"
                            TextColor="White"
-                           BackgroundColor="#1C1C1C"
-                           FontSize="14" />
+                           FontSize="14"/>
 
                     <Entry x:Name="EmailEntry"
                            Placeholder="Your Email"
+                           BackgroundColor="#1C1C1C"
                            PlaceholderColor="#AAAAAA"
                            TextColor="White"
-                           BackgroundColor="#1C1C1C"
                            FontSize="14"
-                           Keyboard="Email" />
+                           Keyboard="Email"/>
 
                     <Editor x:Name="MessageEditor"
                             Placeholder="Your Message (max 500 characters)"
+                            BackgroundColor="#1C1C1C"
                             PlaceholderColor="#AAAAAA"
                             TextColor="White"
-                            BackgroundColor="#1C1C1C"
-                            AutoSize="TextChanges"
                             MaxLength="500"
                             FontSize="14"
-                            HeightRequest="120" />
+                            HeightRequest="120"
+                            AutoSize="TextChanges" />
 
                     <Button Text="Submit"
                             TextColor="White"
                             BackgroundColor="#FA452D"
                             FontAttributes="Bold"
-                            Clicked="OnSubmitClicked" />
+                            Clicked="OnSubmitClicked"/>
                 </VerticalStackLayout>
 
-                <!-- Embedded Google Map -->
+                <!-- Google Maps Embed -->
                 <Frame HasShadow="True"
                        CornerRadius="10"
                        Padding="0"
                        HeightRequest="200"
                        BackgroundColor="White">
-                    <Grid>
-                        <WebView Source="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1983.8675116711635!2d-0.053682!3d51.554361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761cddc4dd0291%3A0x6f1a50bd2be43a14!2s6%20Chatsworth%20Rd%2C%20Lower%20Clapton%2C%20London%20E5%200LP!5e0!3m2!1sen!2suk!4v1681462222222"
-                                 VerticalOptions="FillAndExpand"
-                                 HorizontalOptions="FillAndExpand" />
-
-                        <!-- Clickable overlay -->
-                        <BoxView BackgroundColor="Transparent">
-                            <BoxView.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnMapTapped" />
-                            </BoxView.GestureRecognizers>
-                        </BoxView>
-                    </Grid>
+                    <WebView HeightRequest="200">
+                        <WebView.Source>
+                            <HtmlWebViewSource>
+                                <HtmlWebViewSource.Html>
+                                    <![CDATA[
+                <html>
+                    <head><meta name='viewport' content='initial-scale=1.0, width=device-width'/></head>
+                    <body style='margin:0;padding:0;'>
+                        <iframe width='100%' height='100%' frameborder='0' style='border:0'
+                            src='https://www.google.com/maps/embed/v1/place?key=AIzaSyBPiIT4Dt-d2v-38X5RNB4JEscIgZFTkgo&q=170+Sandringham+Rd,+London+E8+2HS' allowfullscreen>
+                        </iframe>
+                    </body>
+                </html>
+                ]]>
+                                </HtmlWebViewSource.Html>
+                            </HtmlWebViewSource>
+                        </WebView.Source>
+                    </WebView>
                 </Frame>
 
                 <!-- Footer Section -->
-                <Grid BackgroundColor="White"
-                      Padding="30,20"
-                      HorizontalOptions="FillAndExpand">
-
-                    <VerticalStackLayout Spacing="10"
-                                         HorizontalOptions="Center">
-
-                        <Label Text="📍 6 Chatsworth Rd, London E5 0LP"
+                <Grid BackgroundColor="White" Padding="30,20" HorizontalOptions="FillAndExpand">
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Label Text="📍 170 Sandringham Rd, London E8 2HS"
                                TextColor="#131313"
                                FontSize="14"
                                HorizontalTextAlignment="Center" />
-
-                        <Label Text="📞 020 8985 4523"
+                        <Label Text="📞 020 7502 9511"
                                TextColor="#131313"
                                FontSize="14"
                                HorizontalTextAlignment="Center" />
-
-                        <Label Text="📧 info@casablancaeats.com"
+                        <Label Text="📧 casa@casablancaeats.com"
                                TextColor="#131313"
                                FontSize="14"
                                HorizontalTextAlignment="Center" />
-
                         <Label Text="🕓 Opening Hours"
                                FontAttributes="Bold"
                                FontSize="16"
                                TextColor="#131313"
                                Margin="0,10,0,0"
                                HorizontalTextAlignment="Center" />
-
-                        <Label Text="Mon – Fri: 11am – 11pm"
+                        <Label Text="Monday – Saturday: 7 am – 11 pm"
                                FontSize="14"
                                TextColor="#131313"
                                HorizontalTextAlignment="Center" />
-                        <Label Text="Sat – Sun: 12pm – 12am"
+                        <Label Text="Sunday: 10 am – 10 pm"
                                FontSize="14"
                                TextColor="#131313"
                                HorizontalTextAlignment="Center" />
-
                     </VerticalStackLayout>
                 </Grid>
             </VerticalStackLayout>
