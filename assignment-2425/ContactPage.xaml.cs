@@ -1,5 +1,4 @@
-using Microsoft.Maui.Controls;
-using System;
+using System.Text.RegularExpressions;
 
 namespace assignment_2425;
 
@@ -10,20 +9,28 @@ public partial class ContactPage : ContentPage
         InitializeComponent();
     }
 
+    private void OnPrivacyCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        SubmitButton.IsEnabled = e.Value;
+        SubmitButton.Opacity = e.Value ? 1 : 0.5;
+    }
+
     private async void OnSubmitClicked(object sender, EventArgs e)
     {
         bool hasError = false;
 
-        if (string.IsNullOrWhiteSpace(NameEntry.Text))
-        {
-            NameEntry.BackgroundColor = Colors.DarkRed;
-            hasError = true;
-        }
-        if (string.IsNullOrWhiteSpace(EmailEntry.Text))
+        // Reset background colors first
+        EmailEntry.BackgroundColor = Color.FromArgb("#1C1C1C");
+        MessageEditor.BackgroundColor = Color.FromArgb("#1C1C1C");
+
+        // Email validation
+        if (string.IsNullOrWhiteSpace(EmailEntry.Text) || !Regex.IsMatch(EmailEntry.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
         {
             EmailEntry.BackgroundColor = Colors.DarkRed;
             hasError = true;
         }
+
+        // Message validation
         if (string.IsNullOrWhiteSpace(MessageEditor.Text))
         {
             MessageEditor.BackgroundColor = Colors.DarkRed;
@@ -32,24 +39,16 @@ public partial class ContactPage : ContentPage
 
         if (hasError)
         {
-            await DisplayAlert("Error", "Please complete all fields.", "OK");
-            return;
-        }
-
-        if (MessageEditor.Text.Length > 500)
-        {
-            await DisplayAlert("Too Long", "Message must be 500 characters or fewer.", "OK");
+            await DisplayAlert("Error", "Please complete all required fields correctly.", "OK");
             return;
         }
 
         await DisplayAlert("Thank You", "Your message has been submitted.", "OK");
 
+        // Reset
         NameEntry.Text = "";
         EmailEntry.Text = "";
         MessageEditor.Text = "";
-
-        NameEntry.BackgroundColor = Color.FromArgb("#1C1C1C");
-        EmailEntry.BackgroundColor = Color.FromArgb("#1C1C1C");
-        MessageEditor.BackgroundColor = Color.FromArgb("#1C1C1C");
+        PrivacyCheckBox.IsChecked = false;
     }
 }

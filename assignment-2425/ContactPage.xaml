@@ -6,23 +6,29 @@
              BackgroundColor="#131313">
 
     <Grid RowDefinitions="Auto,*">
-        <!-- Sticky Navbar -->
         <local:StickyNavBar Grid.Row="0" />
 
-        <!-- Scrollable Content -->
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Spacing="30" Padding="20">
 
                 <!-- Header -->
-                <Label Text="Contact Us"
+                <Label Text="Get In Touch With us"
                        Style="{StaticResource TitleStyle}"
+                       TextColor="#FECA18"
+                       FontSize="35"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,20,0,0"/>
+
+                <Label Text="WE'D LOVE TO HEAR FROM YOU!"
+                       Style="{StaticResource TitleStyle}"
+                       FontSize="25"
                        HorizontalTextAlignment="Center"
                        Margin="0,20,0,0"/>
 
                 <!-- Contact Form -->
                 <VerticalStackLayout Spacing="15">
                     <Entry x:Name="NameEntry"
-                           Placeholder="Your Name"
+                           Placeholder="Your Name (optional)"
                            BackgroundColor="#1C1C1C"
                            PlaceholderColor="#AAAAAA"
                            TextColor="White"
@@ -46,10 +52,21 @@
                             HeightRequest="120"
                             AutoSize="TextChanges" />
 
-                    <Button Text="Submit"
+                    <StackLayout Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                        <CheckBox x:Name="PrivacyCheckBox" Color="#FECA18" CheckedChanged="OnPrivacyCheckedChanged"/>
+                        <Label Text="I agree to the Privacy Policy"
+                               VerticalOptions="Center"
+                               TextColor="White"
+                               FontSize="13"/>
+                    </StackLayout>
+
+                    <Button x:Name="SubmitButton"
+                            Text="Submit"
                             TextColor="White"
                             BackgroundColor="#FA452D"
                             FontAttributes="Bold"
+                            IsEnabled="False"
+                            Opacity="0.5"
                             Clicked="OnSubmitClicked"/>
                 </VerticalStackLayout>
 
@@ -83,33 +100,21 @@
                 <Grid BackgroundColor="White" Padding="30,20" HorizontalOptions="FillAndExpand">
                     <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
                         <Label Text="📍 170 Sandringham Rd, London E8 2HS"
-                               TextColor="#131313"
-                               FontSize="14"
-                               HorizontalTextAlignment="Center" />
+                               TextColor="#131313" FontSize="14" HorizontalTextAlignment="Center" />
                         <Label Text="📞 020 7502 9511"
-                               TextColor="#131313"
-                               FontSize="14"
-                               HorizontalTextAlignment="Center" />
+                               TextColor="#131313" FontSize="14" HorizontalTextAlignment="Center" />
                         <Label Text="📧 casa@casablancaeats.com"
-                               TextColor="#131313"
-                               FontSize="14"
-                               HorizontalTextAlignment="Center" />
+                               TextColor="#131313" FontSize="14" HorizontalTextAlignment="Center" />
                         <Label Text="🕓 Opening Hours"
-                               FontAttributes="Bold"
-                               FontSize="16"
-                               TextColor="#131313"
-                               Margin="0,10,0,0"
-                               HorizontalTextAlignment="Center" />
+                               FontAttributes="Bold" FontSize="16"
+                               TextColor="#131313" Margin="0,10,0,0" HorizontalTextAlignment="Center" />
                         <Label Text="Monday – Saturday: 7 am – 11 pm"
-                               FontSize="14"
-                               TextColor="#131313"
-                               HorizontalTextAlignment="Center" />
+                               FontSize="14" TextColor="#131313" HorizontalTextAlignment="Center" />
                         <Label Text="Sunday: 10 am – 10 pm"
-                               FontSize="14"
-                               TextColor="#131313"
-                               HorizontalTextAlignment="Center" />
+                               FontSize="14" TextColor="#131313" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                 </Grid>
+
             </VerticalStackLayout>
         </ScrollView>
     </Grid>
