@@ -31,11 +31,6 @@ public partial class MenuPage : ContentPage
 			});
 		}
 	}
-
-    //private void OnImageTapped(object sender, TappedEventArgs e)
-    //{
-
-    //}
 }
 
 public class MenuImage

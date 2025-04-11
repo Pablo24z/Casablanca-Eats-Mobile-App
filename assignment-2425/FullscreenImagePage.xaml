@@ -6,26 +6,33 @@
              NavigationPage.HasNavigationBar="False">
 
     <Grid>
-        <Image x:Name="FullImage"
-               Aspect="AspectFit"
-               VerticalOptions="Center"
-               HorizontalOptions="Center" />
 
+        <!-- Scrollable Zoomed View -->
+        <ScrollView x:Name="ImageScrollView"
+                    Orientation="Both"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    BackgroundColor="#131313">
 
+            <Grid>
+                <Image x:Name="FullImage"
+                       Aspect="AspectFit"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       Scale="0.55" />
+                <!-- Starts zoomed in -->
+            </Grid>
+        </ScrollView>
 
+        <!-- Close Button -->
         <ImageButton Source="close_icon.png"
-             BackgroundColor="Transparent"
-             WidthRequest="40"
-             HeightRequest="40"
-             HorizontalOptions="End"
-             VerticalOptions="Start"
-             Margin="10"
-             IsVisible="True"
-             ZIndex="2"
-             Clicked="CloseImage" />
-
+                     BackgroundColor="Transparent"
+                     WidthRequest="40"
+                     HeightRequest="40"
+                     HorizontalOptions="End"
+                     VerticalOptions="Start"
+                     Margin="10"
+                     Clicked="CloseImage"
+                     ZIndex="5" />
     </Grid>
-    
-    
-    
 </ContentPage>
