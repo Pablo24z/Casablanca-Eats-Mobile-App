@@ -54,8 +54,8 @@
                             </Label.FormattedText>
                         </Label>
 
-                        <Label Text="At Casablanca, we serve more than just food—we serve culture. Step inside for a taste of the islands..."
-                               FontSize="15"
+                        <Label Text="At Casablanca, we serve more than just food — We serve culture. Step inside for a taste of the islands..."
+                               FontSize="18"
                                FontAttributes="Bold"
                                TextColor="#FFFFFF"
                                HorizontalOptions="Center"
@@ -68,7 +68,7 @@
                                WidthRequest="1300"
                                HorizontalOptions="FillAndExpand"
                                VerticalOptions="End"
-                               Margin="0,0,0,-67"
+                               Margin="0,0,0,-65"
                                ZIndex="3" />
                     </VerticalStackLayout>
                 </Grid>
@@ -81,43 +81,46 @@
                     <Frame BackgroundColor="#FECA18" CornerRadius="12" Padding="16">
                         <Label Text="Family-Owned. Tradition-Driven. Enjoy generation-old recipes passed down with love from Hackney"
                                TextColor="#131313"
-                               FontSize="14"
+                               FontSize="16"
                                HorizontalTextAlignment="Center"/>
                     </Frame>
 
                     <!-- Benefits Section -->
                     <StackLayout Spacing="12">
                         <Label Text="Why Casablanca?"
-                               FontSize="20"
+                               FontFamily="PalanquinDarkMedium"
+                               FontSize="22"
                                FontAttributes="Bold"
                                TextColor="#FA452D"/>
                         <Label Text="• Community Spirit: A vibrant, friendly vibe that feels like home."
-                               TextColor="#FFFFFF" FontSize="14"/>
+                               TextColor="#FFFFFF" FontSize="16"/>
                         <Label Text="• Family-Run: Our values are in every dish."
-                               TextColor="#FFFFFF" FontSize="14"/>
+                               TextColor="#FFFFFF" FontSize="16"/>
                         <Label Text="• Affordable Quality: High-quality food at reasonable prices."
-                               TextColor="#FFFFFF" FontSize="14"/>
+                               TextColor="#FFFFFF" FontSize="16"/>
                         <Label Text="• Trusted by Hackney locals for years."
-                               TextColor="#FFFFFF" FontSize="14"/>
+                               TextColor="#FFFFFF" FontSize="16"/>
                     </StackLayout>
 
                     <!-- Popular Dishes Section -->
                     <StackLayout>
                         <Label Text="Popular Dishes"
-                               FontSize="20"
+                               FontSize="22"
+                               FontFamily="PalanquinDarkMedium"
                                FontAttributes="Bold"
-                               TextColor="#7ECB37"/>
-                        <Frame BackgroundColor="#f7f7f7" CornerRadius="10" Padding="10">
+                               TextColor="#7ECB37"
+                               Padding="10"/>
+                        <Frame BackgroundColor="#f7f7f7" CornerRadius="10" Padding="10" Margin="1">
                             <Label Text="Jerk Chicken - Marinated in traditional Caribbean spices, grilled to perfection"
-                                   TextColor="#131313" FontSize="14"/>
+                                   TextColor="#131313" FontSize="16"/>
                         </Frame>
-                        <Frame BackgroundColor="#F7F7F7" CornerRadius="10" Padding="10">
+                        <Frame BackgroundColor="#F7F7F7" CornerRadius="10" Padding="10" Margin="1">
                             <Label Text="Curry Goat - Tender, slow-cooked goat in a rich, aromatic curry sauce."
-                                   TextColor="#131313" FontSize="14" />
+                                   TextColor="#131313" FontSize="16" />
                         </Frame>
-                        <Frame BackgroundColor="#F7F7F7" CornerRadius="10" Padding="10">
+                        <Frame BackgroundColor="#F7F7F7" CornerRadius="10" Padding="10" Margin="1">
                             <Label Text="Fried Plantains - Golden, sweet, and crisp—perfect as a side or snack."
-                                   TextColor="#131313" FontSize="14" />
+                                   TextColor="#131313" FontSize="16" />
                         </Frame>
                     </StackLayout>
 
@@ -125,7 +128,7 @@
                     <Frame BackgroundColor="#FA452D" CornerRadius="10" Padding="20">
                         <Label Text="Enjoy 10% off your first dine-in experience! Order online or visit us today."
                                TextColor="White"
-                               FontSize="16"
+                               FontSize="18"
                                HorizontalTextAlignment="Center" />
                     </Frame>
                 </VerticalStackLayout>

@@ -18,18 +18,18 @@
                     <Label Text="Signature Dishes to Satisfy Every Appetite"
                            Style="{StaticResource TitleStyle}"
                            TextColor="#FECA18"
-                           FontSize="26"
+                           FontSize="32"
                            HorizontalTextAlignment="Center" />
 
                     <Label Text="EXPLORE OUR MENU"
                            FontFamily="PalanquinDarkMedium"
                            FontAttributes="Bold"
-                           FontSize="20"
+                           FontSize="26"
                            TextColor="#7ECB37"
                            HorizontalTextAlignment="Center" />
 
                     <Label Text="Our menu offers the best of Caribbean cuisine at prices that won’t break the bank. Find something delicious for every budget!"
-                           FontSize="14"
+                           FontSize="18"
                            TextColor="White"
                            HorizontalTextAlignment="Center"
                            Padding="10,0" />
@@ -91,13 +91,13 @@
                             <Image Source="bbq_wingspn.png" Aspect="AspectFill" HeightRequest="130" />
                             <Label Text="BBQ Wings"
                                    FontAttributes="Bold"
-                                   FontSize="16"
+                                   FontSize="17"
                                    TextColor="White" />
                             <Label Text="£4.00"
-                                   FontSize="14"
+                                   FontSize="16"
                                    TextColor="#FECA18" />
                             <Label Text="Sweet and tangy barbecued wings."
-                                   FontSize="13"
+                                   FontSize="16"
                                    TextColor="White" />
                         </VerticalStackLayout>
                     </Frame>
@@ -108,13 +108,13 @@
                             <Image Source="fried_fishtwo.png" Aspect="AspectFill" HeightRequest="130" />
                             <Label Text="Fried Fish"
                                    FontAttributes="Bold"
-                                   FontSize="16"
+                                   FontSize="18"
                                    TextColor="White" />
                             <Label Text="£7.00"
-                                   FontSize="14"
+                                   FontSize="16"
                                    TextColor="#FECA18" />
                             <Label Text="Crispy, golden-fried fish fillet"
-                                   FontSize="13"
+                                   FontSize="16"
                                    TextColor="White" />
                         </VerticalStackLayout>
                     </Frame>
@@ -125,13 +125,13 @@
                             <Image Source="pattie.png" Aspect="AspectFill" HeightRequest="130" />
                             <Label Text="Patties"
                                    FontAttributes="Bold"
-                                   FontSize="16"
+                                   FontSize="18"
                                    TextColor="White" />
                             <Label Text="£2.50"
-                                   FontSize="14"
+                                   FontSize="16"
                                    TextColor="#FECA18" />
                             <Label Text="Flaky pastry filled with seasoned meat or veg."
-                                   FontSize="13"
+                                   FontSize="16"
                                    TextColor="White" />
                         </VerticalStackLayout>
                     </Frame>
