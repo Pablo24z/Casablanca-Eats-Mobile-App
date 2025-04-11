@@ -35,7 +35,7 @@
                            FontSize="14"/>
 
                     <Entry x:Name="EmailEntry"
-                           Placeholder="Your Email"
+                           Placeholder="Your Email*"
                            BackgroundColor="#1C1C1C"
                            PlaceholderColor="#AAAAAA"
                            TextColor="White"
@@ -81,15 +81,15 @@
                             <HtmlWebViewSource>
                                 <HtmlWebViewSource.Html>
                                     <![CDATA[
-                <html>
-                    <head><meta name='viewport' content='initial-scale=1.0, width=device-width'/></head>
-                    <body style='margin:0;padding:0;'>
-                        <iframe width='100%' height='100%' frameborder='0' style='border:0'
-                            src='https://www.google.com/maps/embed/v1/place?key=AIzaSyBPiIT4Dt-d2v-38X5RNB4JEscIgZFTkgo&q=170+Sandringham+Rd,+London+E8+2HS' allowfullscreen>
-                        </iframe>
-                    </body>
-                </html>
-                ]]>
+                                        <html>
+                                            <head><meta name='viewport' content='initial-scale=1.0, width=device-width'/></head>
+                                                <body style='margin:0;padding:0;'>
+                                                    <iframe width='100%' height='100%' frameborder='0' style='border:0'
+                                                     src='https://www.google.com/maps/embed/v1/place?key=AIzaSyBPiIT4Dt-d2v-38X5RNB4JEscIgZFTkgo&q=170+Sandringham+Rd,+London+E8+2HS' allowfullscreen>
+                                                    </iframe>
+                                                </body>
+                                              </html>
+                                    ]]>
                                 </HtmlWebViewSource.Html>
                             </HtmlWebViewSource>
                         </WebView.Source>

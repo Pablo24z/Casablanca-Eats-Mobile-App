@@ -45,7 +45,7 @@ public partial class ContactPage : ContentPage
 
         await DisplayAlert("Thank You", "Your message has been submitted.", "OK");
 
-        // Reset
+        // Reset after Submission
         NameEntry.Text = "";
         EmailEntry.Text = "";
         MessageEditor.Text = "";
