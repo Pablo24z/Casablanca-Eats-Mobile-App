@@ -4,6 +4,7 @@ using Android.Locations;
 
 using System.Text.Json;
 using System.Reflection;
+using System.Threading;
 
 namespace assignment_2425
 {
@@ -11,7 +12,8 @@ namespace assignment_2425
     {
         private List<string> _slideshowImages = new();
         private int _currentImangeIndex = 0;
-        private System.Timers.Timer _imageTimer;
+        private CancellationTokenSource _rotationCancellationTokenSource;
+
         public MainPage()
         {
             InitializeComponent();
@@ -28,6 +30,18 @@ namespace assignment_2425
             };
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            StartSlideshow();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            StopSlideshow();
+        }
+
         private void LoadSlideshowImagesFromJsonFile()
         {
             var assembly = Assembly.GetExecutingAssembly();
@@ -39,41 +53,60 @@ namespace assignment_2425
 
             _slideshowImages = JsonSerializer.Deserialize<List<string>>(json);
 
-            //starts slideshow after being loaded
+            // Set first image immediately
             SlideshowImage.Source = _slideshowImages[_currentImangeIndex];
-            StartSlideshow();
         }
 
         private void StartSlideshow()
         {
-            _imageTimer = new System.Timers.Timer(6000); //6 secs
-            _imageTimer.Elapsed += (s, e) =>
-                MainThread.BeginInvokeOnMainThread(() => RotateImage());
-            _imageTimer.AutoReset = true;
-            _imageTimer.Start();
+            StopSlideshow();
+            _rotationCancellationTokenSource = new CancellationTokenSource();
+            var token = _rotationCancellationTokenSource.Token;
+
+            Task.Run(async () =>
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    _currentImangeIndex = (_currentImangeIndex + 1) % _slideshowImages.Count;
+
+                    await MainThread.InvokeOnMainThreadAsync(async () =>
+                    {
+                        await SlideshowImage.FadeTo(0, 1000);
+                        SlideshowImage.Source = _slideshowImages[_currentImangeIndex];
+                        await SlideshowImage.FadeTo(1, 2000);
+                    });
+
+                    try
+                    {
+                        await Task.Delay(6000, token);
+                    }
+                    catch (TaskCanceledException)
+                    {
+                        break;
+                    }
+                }
+            }, token);
         }
 
-        private async void RotateImage()
+        private void StopSlideshow()
         {
-            _currentImangeIndex = (_currentImangeIndex + 1) % _slideshowImages.Count;
-
-            await SlideshowImage.FadeTo(0, 1000);
-            SlideshowImage.Source = _slideshowImages[_currentImangeIndex];
-            await SlideshowImage.FadeTo(1, 2000);
+            if (_rotationCancellationTokenSource != null)
+            {
+                _rotationCancellationTokenSource.Cancel();
+                _rotationCancellationTokenSource.Dispose();
+                _rotationCancellationTokenSource = null;
+            }
         }
 
         private async void SetHeroLogo(AppTheme theme)
         {
-            await HeroLogo.FadeTo(0, 150); // fade out
+            await HeroLogo.FadeTo(0, 150);
 
             HeroLogo.Source = theme == AppTheme.Dark
                 ? "casalogosimple_dark.png"
                 : "casalogosimple_light.png";
 
-            await HeroLogo.FadeTo(1, 250); // fade in
+            await HeroLogo.FadeTo(1, 250);
         }
-
-
     }
-
 }
