@@ -43,7 +43,7 @@
                            Keyboard="Email"/>
 
                     <Editor x:Name="MessageEditor"
-                            Placeholder="Your Message (max 500 characters)"
+                            Placeholder="Your Message (max 500 characters)*"
                             BackgroundColor="#1C1C1C"
                             PlaceholderColor="#AAAAAA"
                             TextColor="White"
