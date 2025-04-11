@@ -22,6 +22,7 @@
                            HorizontalTextAlignment="Center" />
 
                     <Label Text="EXPLORE OUR MENU"
+                           FontFamily="PalanquinDarkMedium"
                            FontAttributes="Bold"
                            FontSize="20"
                            TextColor="#7ECB37"
@@ -36,15 +37,15 @@
 
                 <!-- Menu Carousel -->
                 <CarouselView x:Name="MenuCarousel"
-              ItemsSource="{Binding MenuImages}"
-              IndicatorView="MenuIndicators"
-              HeightRequest="450"
-              Loop="True">
+                              ItemsSource="{Binding MenuImages}"
+                              IndicatorView="MenuIndicators"
+                              HeightRequest="450"
+                              Loop="True">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
                                 <Image Source="{Binding ImageSource}"
-                       Aspect="AspectFit">
+                                       Aspect="AspectFit">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnImageTapped" />
                                     </Image.GestureRecognizers>
