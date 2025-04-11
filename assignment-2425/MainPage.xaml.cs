@@ -103,8 +103,8 @@ namespace assignment_2425
             await HeroLogo.FadeTo(0, 150);
 
             HeroLogo.Source = theme == AppTheme.Dark
-                ? "casalogosimple_dark.png"
-                : "casalogosimple_light.png";
+                ? "casalogocomplex_dark.png"
+                : "casalogocomplex_light.png";
 
             await HeroLogo.FadeTo(1, 250);
         }
