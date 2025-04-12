@@ -6,8 +6,10 @@
              BackgroundColor="#131313">
 
     <Grid RowDefinitions="Auto,*">
+        <!-- Sticky Navbar -->
         <local:StickyNavBar Grid.Row="0" />
 
+        <!-- Scrollable Content -->
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Spacing="30" Padding="20">
 
@@ -32,7 +34,8 @@
                            BackgroundColor="#1C1C1C"
                            PlaceholderColor="#AAAAAA"
                            TextColor="White"
-                           FontSize="14"/>
+                           FontSize="14"
+                           TextChanged="OnAnyFieldChanged"/>
 
                     <Entry x:Name="EmailEntry"
                            Placeholder="Your Email*"
@@ -40,7 +43,12 @@
                            PlaceholderColor="#AAAAAA"
                            TextColor="White"
                            FontSize="14"
-                           Keyboard="Email"/>
+                           Keyboard="Email"
+                           TextChanged="OnAnyFieldChanged"/>
+                    <Label x:Name="EmailErrorLabel"
+                           TextColor="Red"
+                           FontSize="14"
+                           IsVisible="False" />
 
                     <Editor x:Name="MessageEditor"
                             Placeholder="Your Message (max 500 characters)*"
@@ -50,7 +58,12 @@
                             MaxLength="500"
                             FontSize="14"
                             HeightRequest="120"
-                            AutoSize="TextChanges" />
+                            AutoSize="TextChanges"
+                            TextChanged="OnAnyFieldChanged"/>
+                    <Label x:Name="MessageErrorLabel"
+                           TextColor="Red"
+                           FontSize="14"
+                           IsVisible="False" />
 
                     <StackLayout Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
                         <CheckBox x:Name="PrivacyCheckBox" Color="#FECA18" CheckedChanged="OnPrivacyCheckedChanged"/>
@@ -81,14 +94,14 @@
                             <HtmlWebViewSource>
                                 <HtmlWebViewSource.Html>
                                     <![CDATA[
-                                        <html>
-                                            <head><meta name='viewport' content='initial-scale=1.0, width=device-width'/></head>
-                                                <body style='margin:0;padding:0;'>
-                                                    <iframe width='100%' height='100%' frameborder='0' style='border:0'
-                                                     src='https://www.google.com/maps/embed/v1/place?key=AIzaSyBPiIT4Dt-d2v-38X5RNB4JEscIgZFTkgo&q=170+Sandringham+Rd,+London+E8+2HS' allowfullscreen>
-                                                    </iframe>
-                                                </body>
-                                              </html>
+                                    <html>
+                                        <head><meta name='viewport' content='initial-scale=1.0, width=device-width'/></head>
+                                        <body style='margin:0;padding:0;'>
+                                            <iframe width='100%' height='100%' frameborder='0' style='border:0'
+                                                src='https://www.google.com/maps/embed/v1/place?key=AIzaSyBPiIT4Dt-d2v-38X5RNB4JEscIgZFTkgo&q=170+Sandringham+Rd,+London+E8+2HS' allowfullscreen>
+                                            </iframe>
+                                        </body>
+                                    </html>
                                     ]]>
                                 </HtmlWebViewSource.Html>
                             </HtmlWebViewSource>
@@ -96,9 +109,19 @@
                     </WebView>
                 </Frame>
 
+                <!-- Divider -->
+                <Image Source="dividers/wavesopacitybottom.svg"
+                       Aspect="AspectFill"
+                       HeightRequest="100"
+                       WidthRequest="1000"
+                       Rotation="180"
+                       HorizontalOptions="FillAndExpand"
+                       Margin="0,-20,0,-20"
+                       ZIndex="3" />
+
                 <!-- Footer Section -->
                 <Grid BackgroundColor="White" Padding="30,20" HorizontalOptions="FillAndExpand">
-                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="FillAndExpand">
                         <Label Text="📍 170 Sandringham Rd, London E8 2HS"
                                TextColor="#131313" FontSize="14" HorizontalTextAlignment="Center" />
                         <Label Text="📞 020 7502 9511"

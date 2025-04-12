@@ -7,6 +7,10 @@ public partial class ContactPage : ContentPage
     public ContactPage()
     {
         InitializeComponent();
+
+        // Hide error messages as user types
+        EmailEntry.TextChanged += (s, e) => HideEmailError();
+        MessageEditor.TextChanged += (s, e) => HideMessageError();
     }
 
     private void OnPrivacyCheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -19,36 +23,62 @@ public partial class ContactPage : ContentPage
     {
         bool hasError = false;
 
-        // Reset background colors first
+        // Reset field colors and messages
         EmailEntry.BackgroundColor = Color.FromArgb("#1C1C1C");
         MessageEditor.BackgroundColor = Color.FromArgb("#1C1C1C");
+        EmailErrorLabel.IsVisible = false;
+        MessageErrorLabel.IsVisible = false;
 
-        // Email validation
-        if (string.IsNullOrWhiteSpace(EmailEntry.Text) || !Regex.IsMatch(EmailEntry.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+        // EMAIL VALIDATION
+        if (string.IsNullOrWhiteSpace(EmailEntry.Text))
         {
             EmailEntry.BackgroundColor = Colors.DarkRed;
+            EmailErrorLabel.Text = "Email is required.";
+            EmailErrorLabel.IsVisible = true;
+            hasError = true;
+        }
+        else if (!Regex.IsMatch(EmailEntry.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+        {
+            EmailEntry.BackgroundColor = Colors.DarkRed;
+            EmailErrorLabel.Text = "Email must be valid (contain '@' and a domain).";
+            EmailErrorLabel.IsVisible = true;
             hasError = true;
         }
 
-        // Message validation
+        // MESSAGE VALIDATION
         if (string.IsNullOrWhiteSpace(MessageEditor.Text))
         {
             MessageEditor.BackgroundColor = Colors.DarkRed;
+            MessageErrorLabel.Text = "Message is required.";
+            MessageErrorLabel.IsVisible = true;
             hasError = true;
         }
 
         if (hasError)
         {
-            await DisplayAlert("Error", "Please complete all required fields correctly.", "OK");
+            await DisplayAlert("Error", "Please fix the highlighted errors.", "OK");
             return;
         }
 
         await DisplayAlert("Thank You", "Your message has been submitted.", "OK");
 
-        // Reset after Submission
+        // Reset
         NameEntry.Text = "";
         EmailEntry.Text = "";
         MessageEditor.Text = "";
         PrivacyCheckBox.IsChecked = false;
     }
+
+    private void HideEmailError()
+    {
+        EmailErrorLabel.IsVisible = false;
+        EmailEntry.BackgroundColor = Color.FromArgb("#1C1C1C");
+    }
+
+    private void HideMessageError()
+    {
+        MessageErrorLabel.IsVisible = false;
+        MessageEditor.BackgroundColor = Color.FromArgb("#1C1C1C");
+    }
+
 }
