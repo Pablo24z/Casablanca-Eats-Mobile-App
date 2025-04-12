@@ -10,7 +10,7 @@
         <!-- Sticky Nav -->
         <local:StickyNavBar Grid.Row="0" />
 
-        <!-- 🟡🟢 Menu Title with Branding -->
+        <!-- Menu Title with Branding -->
         <Label Grid.Row="1"
            Style="{StaticResource TitleStyle}"
            HorizontalOptions="Center"
@@ -25,7 +25,6 @@
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-        
 
         <!-- Horizontal Category Tabs -->
         <ScrollView Grid.Row="2"
@@ -57,7 +56,8 @@
                            FontFamily="PalanquinDarkMedium"
                            FontSize="16">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnDishTapped"/>
+                                <TapGestureRecognizer Tapped="OnDishTapped" />
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnDishLongPressed" />
                             </Label.GestureRecognizers>
                         </Label>
                     </Frame>

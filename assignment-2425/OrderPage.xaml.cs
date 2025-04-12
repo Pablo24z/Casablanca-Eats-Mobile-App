@@ -1,4 +1,10 @@
 using assignment_2425.Models;
+using System.Collections.ObjectModel;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Devices;
+using CommunityToolkit.Maui.Alerts;
+using System.Threading.Tasks;
 
 namespace assignment_2425;
 
@@ -11,6 +17,8 @@ public partial class OrderPage : ContentPage
         InitializeComponent();
         viewModel = new OrderViewModel();
         BindingContext = viewModel;
+
+        // Enable shake detection (we'll add this logic later when shake-to-remove is implemented)
     }
 
     private void ScrollToCategory(string category)
@@ -36,6 +44,16 @@ public partial class OrderPage : ContentPage
             {
                 { "Dish", dish }
             });
+        }
+    }
+
+    private async void OnDishLongPressed(object sender, EventArgs e)
+    {
+        if (sender is Label label && label.BindingContext is DishItem dish)
+        {
+            BasketManager.Instance.AddToBasket(dish);
+            HapticFeedback.Default.Perform(HapticFeedbackType.Click);
+            await Toast.Make($"{dish.Name} added to basket").Show();
         }
     }
 }
