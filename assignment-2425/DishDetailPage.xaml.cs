@@ -1,4 +1,8 @@
 using assignment_2425.Models;
+using CommunityToolkit.Maui.Alerts;
+using Microsoft.Maui.Devices;
+using System;
+using Microsoft.Maui.Controls;
 
 namespace assignment_2425;
 
@@ -12,7 +16,7 @@ public partial class DishDetailPage : ContentPage
         set
         {
             _dish = value;
-            BindingContext = _dish; // Automatically bind the view to the dish details
+            BindingContext = _dish;
         }
     }
 
@@ -23,6 +27,14 @@ public partial class DishDetailPage : ContentPage
 
     private async void OnCloseClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(".."); // Go back to the previous page
+        await Shell.Current.GoToAsync("..");
+    }
+
+    private async void OnAddToBasketClicked(object sender, EventArgs e)
+    {
+        BasketManager.Instance.AddToBasket(Dish);
+        HapticFeedback.Default.Perform(HapticFeedbackType.Click);
+        await Toast.Make($"{Dish.Name} added to basket").Show();
+        await Shell.Current.GoToAsync("..");
     }
 }

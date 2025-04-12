@@ -1,10 +1,9 @@
 using assignment_2425.Models;
-using System.Collections.ObjectModel;
-using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Devices;
 using CommunityToolkit.Maui.Alerts;
-using System.Threading.Tasks;
+using Microsoft.Maui.Devices;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace assignment_2425;
 
@@ -12,13 +11,15 @@ public partial class OrderPage : ContentPage
 {
     private OrderViewModel viewModel;
 
+    private bool _isLongPressHandled = false;
+    private DateTime _pressStart;
+    private DishItem _currentPressedDish;
+
     public OrderPage()
     {
         InitializeComponent();
         viewModel = new OrderViewModel();
         BindingContext = viewModel;
-
-        // Enable shake detection (we'll add this logic later when shake-to-remove is implemented)
     }
 
     private void ScrollToCategory(string category)
@@ -38,8 +39,16 @@ public partial class OrderPage : ContentPage
 
     private async void OnDishTapped(object sender, EventArgs e)
     {
-        if (sender is Label label && label.BindingContext is DishItem dish)
+        if (_isLongPressHandled)
         {
+            _isLongPressHandled = false;
+            return; // Skip tap if it was part of a long press
+        }
+
+        if (sender is Grid grid && grid.BindingContext is DishItem dish)
+        {
+            HapticFeedback.Default.Perform(HapticFeedbackType.Click);
+
             await Shell.Current.GoToAsync(nameof(DishDetailPage), true, new Dictionary<string, object>
             {
                 { "Dish", dish }
@@ -47,13 +56,12 @@ public partial class OrderPage : ContentPage
         }
     }
 
-    private async void OnDishLongPressed(object sender, EventArgs e)
+    // Called from OnPointerPressed in TouchEffect or future alternative
+    public async Task HandleLongPress(DishItem dish)
     {
-        if (sender is Label label && label.BindingContext is DishItem dish)
-        {
-            BasketManager.Instance.AddToBasket(dish);
-            HapticFeedback.Default.Perform(HapticFeedbackType.Click);
-            await Toast.Make($"{dish.Name} added to basket").Show();
-        }
+        _isLongPressHandled = true;
+        HapticFeedback.Default.Perform(HapticFeedbackType.LongPress);
+        BasketManager.Instance.AddToBasket(dish);
+        await Toast.Make($"{dish.Name} added to basket").Show();
     }
 }

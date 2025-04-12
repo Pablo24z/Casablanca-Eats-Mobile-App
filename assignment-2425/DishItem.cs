@@ -13,5 +13,6 @@ namespace assignment_2425
         public string Image { get; set; }        // Optional for thumbnails
         public decimal Price { get; set; }
         public string Category { get; set; }
+        public string DisplayPrice => "£" + Price.ToString("0.00");
     }
 }

@@ -8,23 +8,29 @@ using assignment_2425.Models;
 
 namespace assignment_2425;
 
-public static class BasketManager
+public class BasketManager
 {
-    public static ObservableCollection<DishItem> Basket { get; private set; } = new();
+    private static BasketManager _instance;
+    public static BasketManager Instance => _instance ??= new BasketManager();
 
-    public static void AddToBasket(DishItem dish)
+    public ObservableCollection<DishItem> BasketItems { get; private set; } = new();
+
+    private BasketManager() { }
+
+    public void AddToBasket(DishItem item)
     {
-        Basket.Add(dish);
+        BasketItems.Add(item);
     }
 
-    public static void RemoveLastItem()
+    public void RemoveLastItem()
     {
-        if (Basket.Any())
-            Basket.RemoveAt(Basket.Count - 1);
+        if (BasketItems.Any())
+            BasketItems.RemoveAt(BasketItems.Count - 1);
     }
 
-    public static void ClearBasket()
+    public void ClearBasket()
     {
-        Basket.Clear();
+        BasketItems.Clear();
     }
 }
+

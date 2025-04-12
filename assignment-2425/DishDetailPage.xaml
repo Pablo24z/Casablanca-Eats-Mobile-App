@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="assignment_2425.DishDetailPage"
              xmlns:models="clr-namespace:assignment_2425.Models"
+             x:Class="assignment_2425.DishDetailPage"
              BackgroundColor="#1E1E1E"
              NavigationPage.HasNavigationBar="False">
-
-
 
     <Grid Padding="16">
         <ScrollView>
@@ -15,9 +13,11 @@
                        FontSize="24"
                        FontAttributes="Bold"
                        TextColor="White" />
-                <Label Text="{Binding Price}"
+
+                <Label Text="{Binding DisplayPrice}"
                        FontSize="20"
                        TextColor="#FECA18" />
+
                 <Label Text="{Binding Description}"
                        FontSize="16"
                        TextColor="White" />
@@ -25,6 +25,7 @@
                 <Button Text="Add to Basket"
                         BackgroundColor="#7ECB37"
                         TextColor="White"
+                        Clicked="OnAddToBasketClicked"
                         CornerRadius="10"/>
             </VerticalStackLayout>
         </ScrollView>
