@@ -6,36 +6,33 @@
              BackgroundColor="#131313">
 
     <Grid RowDefinitions="Auto,*">
-        <!-- Sticky Navbar -->
         <local:StickyNavBar Grid.Row="0" />
 
-        <!-- Scrollable Content -->
         <ScrollView Grid.Row="1">
-            <VerticalStackLayout Spacing="30" Padding="20">
+            <VerticalStackLayout Spacing="30">
 
                 <!-- Header -->
-                <Label Text="Get In Touch With us"
-                       Style="{StaticResource TitleStyle}"
-                       TextColor="#FECA18"
-                       FontSize="35"
-                       HorizontalTextAlignment="Center"
-                       Margin="0,20,0,0"/>
+                <VerticalStackLayout Padding="20,20,20,0" Spacing="10">
+                    <Label Text="Get In Touch With us"
+                           Style="{StaticResource TitleStyle}"
+                           TextColor="#FECA18"
+                           FontSize="35"
+                           HorizontalTextAlignment="Center"/>
 
-                <Label Text="WE'D LOVE TO HEAR FROM YOU!"
-                       Style="{StaticResource TitleStyle}"
-                       FontSize="25"
-                       HorizontalTextAlignment="Center"
-                       Margin="0,20,0,0"/>
+                    <Label Text="WE'D LOVE TO HEAR FROM YOU!"
+                           Style="{StaticResource TitleStyle}"
+                           FontSize="25"
+                           HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
 
                 <!-- Contact Form -->
-                <VerticalStackLayout Spacing="15">
+                <VerticalStackLayout Padding="20,0" Spacing="15">
                     <Entry x:Name="NameEntry"
                            Placeholder="Your Name (optional)"
                            BackgroundColor="#1C1C1C"
                            PlaceholderColor="#AAAAAA"
                            TextColor="White"
-                           FontSize="14"
-                           TextChanged="OnAnyFieldChanged"/>
+                           FontSize="14"/>
 
                     <Entry x:Name="EmailEntry"
                            Placeholder="Your Email*"
@@ -43,8 +40,8 @@
                            PlaceholderColor="#AAAAAA"
                            TextColor="White"
                            FontSize="14"
-                           Keyboard="Email"
-                           TextChanged="OnAnyFieldChanged"/>
+                           Keyboard="Email"/>
+
                     <Label x:Name="EmailErrorLabel"
                            TextColor="Red"
                            FontSize="14"
@@ -58,8 +55,8 @@
                             MaxLength="500"
                             FontSize="14"
                             HeightRequest="120"
-                            AutoSize="TextChanges"
-                            TextChanged="OnAnyFieldChanged"/>
+                            AutoSize="TextChanges" />
+
                     <Label x:Name="MessageErrorLabel"
                            TextColor="Red"
                            FontSize="14"
@@ -88,20 +85,21 @@
                        CornerRadius="10"
                        Padding="0"
                        HeightRequest="200"
-                       BackgroundColor="White">
+                       BackgroundColor="White"
+                       Margin="20,0">
                     <WebView HeightRequest="200">
                         <WebView.Source>
                             <HtmlWebViewSource>
                                 <HtmlWebViewSource.Html>
                                     <![CDATA[
-                                    <html>
-                                        <head><meta name='viewport' content='initial-scale=1.0, width=device-width'/></head>
-                                        <body style='margin:0;padding:0;'>
-                                            <iframe width='100%' height='100%' frameborder='0' style='border:0'
-                                                src='https://www.google.com/maps/embed/v1/place?key=AIzaSyBPiIT4Dt-d2v-38X5RNB4JEscIgZFTkgo&q=170+Sandringham+Rd,+London+E8+2HS' allowfullscreen>
-                                            </iframe>
-                                        </body>
-                                    </html>
+                                        <html>
+                                            <head><meta name='viewport' content='initial-scale=1.0, width=device-width'/></head>
+                                            <body style='margin:0;padding:0;'>
+                                                <iframe width='100%' height='100%' frameborder='0' style='border:0'
+                                                    src='https://www.google.com/maps/embed/v1/place?key=AIzaSyBPiIT4Dt-d2v-38X5RNB4JEscIgZFTkgo&q=170+Sandringham+Rd,+London+E8+2HS' allowfullscreen>
+                                                </iframe>
+                                            </body>
+                                        </html>
                                     ]]>
                                 </HtmlWebViewSource.Html>
                             </HtmlWebViewSource>
@@ -111,30 +109,32 @@
 
                 <!-- Divider -->
                 <Image Source="dividers/wavesopacitybottom.svg"
+                       HeightRequest="110"
+                       WidthRequest="1280"
                        Aspect="AspectFill"
-                       HeightRequest="100"
-                       WidthRequest="1000"
-                       Rotation="180"
                        HorizontalOptions="FillAndExpand"
-                       Margin="0,-20,0,-20"
-                       ZIndex="3" />
+                       Margin="0,30,0,-120"
+                       ZIndex="2" />
 
                 <!-- Footer Section -->
-                <Grid BackgroundColor="White" Padding="30,20" HorizontalOptions="FillAndExpand">
-                    <VerticalStackLayout Spacing="10" HorizontalOptions="FillAndExpand">
+                <Grid BackgroundColor="White"
+                      Padding="20,80"
+                      HorizontalOptions="FillAndExpand"
+                      Margin="0">
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
                         <Label Text="📍 170 Sandringham Rd, London E8 2HS"
-                               TextColor="#131313" FontSize="14" HorizontalTextAlignment="Center" />
+                               TextColor="#131313" FontSize="18" HorizontalTextAlignment="Center" />
                         <Label Text="📞 020 7502 9511"
-                               TextColor="#131313" FontSize="14" HorizontalTextAlignment="Center" />
+                               TextColor="#131313" FontSize="18" HorizontalTextAlignment="Center" />
                         <Label Text="📧 casa@casablancaeats.com"
-                               TextColor="#131313" FontSize="14" HorizontalTextAlignment="Center" />
+                               TextColor="#131313" FontSize="18" HorizontalTextAlignment="Center" />
                         <Label Text="🕓 Opening Hours"
-                               FontAttributes="Bold" FontSize="16"
+                               FontAttributes="Bold" FontSize="20"
                                TextColor="#131313" Margin="0,10,0,0" HorizontalTextAlignment="Center" />
                         <Label Text="Monday – Saturday: 7 am – 11 pm"
-                               FontSize="14" TextColor="#131313" HorizontalTextAlignment="Center" />
+                               FontSize="18" TextColor="#131313" HorizontalTextAlignment="Center" />
                         <Label Text="Sunday: 10 am – 10 pm"
-                               FontSize="14" TextColor="#131313" HorizontalTextAlignment="Center" />
+                               FontSize="18" TextColor="#131313" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                 </Grid>
 
