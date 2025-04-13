@@ -7,41 +7,50 @@
              NavigationPage.HasNavigationBar="False">
 
     <Grid Padding="16">
+
+        <!-- Scrollable content area for dish info -->
         <ScrollView>
             <VerticalStackLayout Spacing="20">
+
+                <!-- Dish Name -->
                 <Label Text="{Binding Name}"
                        FontSize="24"
                        FontAttributes="Bold"
                        TextColor="White" />
 
+                <!-- Dish Price -->
                 <Label Text="{Binding DisplayPrice}"
                        FontSize="20"
-                       TextColor="#FECA18"
-                       FontAttributes="Bold" />
+                       FontAttributes="Bold"
+                       TextColor="#FECA18" />
 
+                <!-- Dish Description -->
                 <Label Text="{Binding Description}"
                        FontSize="16"
                        TextColor="White" />
 
+                <!-- Add to Basket Button -->
                 <Button Text="Add to Basket"
                         BackgroundColor="#7ECB37"
                         TextColor="White"
-                        Clicked="OnAddToBasketClicked"
-                        CornerRadius="10"/>
+                        CornerRadius="10"
+                        Clicked="OnAddToBasketClicked" />
+
             </VerticalStackLayout>
         </ScrollView>
 
+        <!-- Close Button (top-right corner) -->
         <ImageButton Source="close_icon.png"
-             Clicked="OnCloseClicked"
-             WidthRequest="40"
-             HeightRequest="40"
-             Padding="5"
-             Margin="10"
-             BackgroundColor="Transparent"
-             HorizontalOptions="End"
-             VerticalOptions="Start"
-             IsEnabled="True"
-             InputTransparent="False"/>
+                     Clicked="OnCloseClicked"
+                     WidthRequest="40"
+                     HeightRequest="40"
+                     Padding="5"
+                     Margin="10"
+                     BackgroundColor="Transparent"
+                     HorizontalOptions="End"
+                     VerticalOptions="Start"
+                     IsEnabled="True"
+                     InputTransparent="False" />
 
     </Grid>
 </ContentPage>

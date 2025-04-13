@@ -7,15 +7,18 @@ using assignment_2425.Models;
 
 namespace assignment_2425.Models
 {
-
     public class OrderViewModel : INotifyPropertyChanged
     {
+        // Observable list of all available dishes shown on the OrderPage
         public ObservableCollection<DishItem> Dishes { get; set; }
 
         public OrderViewModel()
         {
+            // This list represents the restaurant's full menu.
+            // Each DishItem holds its category, price, and description.
             Dishes = new ObservableCollection<DishItem>
             {
+                // Meals
                 new DishItem { Name = "Mini Chicken Meal", Category = "Meals", Price = 7.00m, Description = "Small portion of marinated chicken served with sides." },
                 new DishItem { Name = "Mixed Chicken Meal", Category = "Meals", Price = 11.00m, Description = "A mix of our favourite chicken styles with sides." },
                 new DishItem { Name = "Small Chicken/Fish Meal", Category = "Meals", Price = 9.00m, Description = "Small portion of chicken or fish with your choice of sides." },
@@ -26,6 +29,10 @@ namespace assignment_2425.Models
                 new DishItem { Name = "Large Red Bream Meal", Category = "Meals", Price = 12.00m, Description = "Generous portion of fresh red bream with sides." },
                 new DishItem { Name = "Mixed Meat Meal", Category = "Meals", Price = 12.00m, Description = "Selection of meats with traditional island seasonings." },
                 new DishItem { Name = "Steamed Fish Meal", Category = "Meals", Price = 15.00m, Description = "Whole fish steamed with vegetables and spices." },
+                new DishItem { Name = "Curry Chick Pea Meal", Category = "Meals", Price = 9.00m, Description = "Hearty chickpeas in curry sauce with rice." },
+                new DishItem { Name = "Steam Veg Meal", Category = "Meals", Price = 9.00m, Description = "Steamed seasonal vegetables served with rice." },
+
+                // Portions
                 new DishItem { Name = "Curry Chicken", Category = "Portions", Price = 7.00m, Description = "Spiced curry chicken slow-cooked to perfection." },
                 new DishItem { Name = "Fried Chicken", Category = "Portions", Price = 6.00m, Description = "Crispy golden fried chicken packed with flavour." },
                 new DishItem { Name = "Jerk Chicken", Category = "Portions", Price = 7.00m, Description = "Spicy, marinated grilled chicken." },
@@ -50,18 +57,20 @@ namespace assignment_2425.Models
                 new DishItem { Name = "Rice & Peas", Category = "Portions", Price = 4.00m, Description = "Classic Caribbean rice with kidney beans." },
                 new DishItem { Name = "Hard Food", Category = "Portions", Price = 1.00m, Description = "Traditional boiled provisions like yam and dumpling." },
                 new DishItem { Name = "White Rice", Category = "Portions", Price = 4.00m, Description = "Steamed white rice, plain and simple." },
-                new DishItem { Name = "Curry Chick Pea Meal", Category = "Meals", Price = 9.00m, Description = "Hearty chickpeas in curry sauce with rice." },
-                new DishItem { Name = "Steam Veg Meal", Category = "Meals", Price = 9.00m, Description = "Steamed seasonal vegetables served with rice." },
                 new DishItem { Name = "Cornmeal", Category = "Portions", Price = 4.00m, Description = "Warm, spiced cornmeal porridge." },
                 new DishItem { Name = "Peanut", Category = "Portions", Price = 4.00m, Description = "Creamy peanut porridge." },
                 new DishItem { Name = "Oats", Category = "Portions", Price = 4.00m, Description = "Classic oats porridge with spice." },
                 new DishItem { Name = "Banana", Category = "Portions", Price = 4.00m, Description = "Rich banana porridge, great for mornings." },
+
+                // Soups
                 new DishItem { Name = "Beef Soup", Category = "Soups", Price = 4.50m, Description = "Beef broth soup with dumplings and veggies." },
                 new DishItem { Name = "Chicken Soup", Category = "Soups", Price = 4.50m, Description = "Traditional chicken soup with hearty fixings." },
                 new DishItem { Name = "Chicken Foot Soup", Category = "Soups", Price = 4.50m, Description = "Island-style soup featuring chicken feet." },
                 new DishItem { Name = "Cow Foot Soup", Category = "Soups", Price = 4.50m, Description = "Slow-cooked cow foot with dumplings in broth." },
                 new DishItem { Name = "Goat Soup", Category = "Soups", Price = 4.50m, Description = "Savory goat broth soup with vegetables." },
                 new DishItem { Name = "Red Pea Soup", Category = "Soups", Price = 4.50m, Description = "Pea soup rich with coconut milk and spices." },
+
+                // Snacks
                 new DishItem { Name = "Coleslaw", Category = "Snacks", Price = 2.00m, Description = "Creamy shredded coleslaw with a tangy finish." },
                 new DishItem { Name = "Curry Chick Pea", Category = "Snacks", Price = 5.00m, Description = "Spicy chickpeas cooked in curry seasoning." },
                 new DishItem { Name = "Festivals", Category = "Snacks", Price = 1.00m, Description = "Sweet fried dumplings, perfect as a side." },
@@ -72,6 +81,8 @@ namespace assignment_2425.Models
                 new DishItem { Name = "Salad", Category = "Snacks", Price = 1.00m, Description = "Fresh mixed green salad." },
                 new DishItem { Name = "Sprats", Category = "Snacks", Price = 5.00m, Description = "Crispy whole fried sprats." },
                 new DishItem { Name = "Steam Veg", Category = "Snacks", Price = 4.00m, Description = "Steamed medley of vegetables." },
+
+                // Drinks
                 new DishItem { Name = "Soda Can (Any)", Category = "Drinks", Price = 1.00m, Description = "Your choice of canned soda." },
                 new DishItem { Name = "Beetroot Juice", Category = "Drinks", Price = 5.00m, Description = "Fresh beetroot juice, earthy and nutritious." },
                 new DishItem { Name = "Carrot Juice", Category = "Drinks", Price = 5.00m, Description = "Sweet and healthy carrot juice." },

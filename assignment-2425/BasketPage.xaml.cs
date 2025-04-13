@@ -6,7 +6,6 @@ using Microsoft.Maui.Devices.Sensors;
 using CommunityToolkit.Maui.Alerts;
 using System.Diagnostics;
 
-
 namespace assignment_2425
 {
     public partial class BasketPage : ContentPage
@@ -20,6 +19,7 @@ namespace assignment_2425
             BindingContext = viewModel;
         }
 
+        // Removes the tapped item from the basket
         private void OnRemoveClicked(object sender, EventArgs e)
         {
             if (sender is ImageButton button && button.CommandParameter is BasketItem item)
@@ -29,17 +29,19 @@ namespace assignment_2425
             }
         }
 
+        // Navigates to the checkout page
         private async void OnCheckoutClicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync(nameof(CheckoutPage));
         }
 
+        // Manually simulates a shake gesture (for testing)
         private void SimulateShakeClicked(object sender, EventArgs e)
         {
             OnShakeDetected(this, EventArgs.Empty);
         }
 
-
+        // Starts accelerometer monitoring when page appears
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -51,6 +53,7 @@ namespace assignment_2425
             }
         }
 
+        // Stops accelerometer monitoring when page disappears
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
@@ -62,11 +65,12 @@ namespace assignment_2425
             }
         }
 
+        // Triggered on shake gesture — removes last item from the basket
         private void OnShakeDetected(object sender, EventArgs e)
         {
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                Debug.WriteLine(" Shake detected!");
+                Debug.WriteLine("Shake detected!");
 
                 if (viewModel.BasketItems.Any())
                 {
@@ -76,6 +80,5 @@ namespace assignment_2425
                 }
             });
         }
-
     }
 }

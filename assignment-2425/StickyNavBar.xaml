@@ -6,7 +6,8 @@
              HeightRequest="70">
 
     <AbsoluteLayout>
-        <!-- Sticky Nav Grid -->
+
+        <!-- Main nav grid sits fixed at the top -->
         <Grid x:Name="NavRoot"
               Padding="10"
               ColumnSpacing="10"
@@ -23,7 +24,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <!-- Logo -->
+            <!-- Brand logo with tap to return to MainPage -->
             <Image Source="casalonglogo_light.png"
                    HeightRequest="40"
                    WidthRequest="125"
@@ -36,7 +37,7 @@
                 </Image.GestureRecognizers>
             </Image>
 
-            <!-- Tablet/Desktop Nav Buttons -->
+            <!-- Tablet/Desktop: Button navigation -->
             <StackLayout x:Name="NavButtonsPanel"
                          Orientation="Horizontal"
                          Spacing="20"
@@ -50,7 +51,7 @@
                 <Button Text="Order" Style="{StaticResource NavBarButtonStyle}" Clicked="OnOrderClicked" />
             </StackLayout>
 
-            <!-- Theme Toggle -->
+            <!-- Theme toggle button -->
             <ImageButton x:Name="ThemeToggleButton"
                          Source="moon_icon.svg"
                          WidthRequest="30"
@@ -59,7 +60,7 @@
                          Clicked="OnToggleThemeClicked"
                          Grid.Column="2" />
 
-            <!-- Hamburger (Mobile Only) -->
+            <!-- Hamburger for mobile view -->
             <ImageButton x:Name="HamburgerButton"
                          Source="menu_icon.svg"
                          WidthRequest="30"
@@ -69,8 +70,7 @@
                          Grid.Column="3"
                          IsVisible="True" />
 
-
-            <!-- Flyout Menu (Dropdown) -->
+            <!-- Dropdown flyout menu (used on smaller screens) -->
             <Frame x:Name="FlyoutMenu"
                    BackgroundColor="#FECA18"
                    BorderColor="Transparent"
@@ -83,19 +83,13 @@
                    AbsoluteLayout.LayoutBounds="0,70,1,AutoSize"
                    AbsoluteLayout.LayoutFlags="WidthProportional">
 
-                <HorizontalStackLayout Spacing="8"
-                            InputTransparent="False">
-                    <Button Text="Contact"
-                            Clicked="OnContactClicked"
-                            Style="{StaticResource NavBarButtonStyle}" />
-                    <Button Text="Menu"
-                            Clicked="OnMenuClicked"
-                            Style="{StaticResource NavBarButtonStyle}" />
-                    <Button Text="Order"
-                            Clicked="OnOrderClicked"
-                            Style="{StaticResource NavBarButtonStyle}" />
+                <HorizontalStackLayout Spacing="8" InputTransparent="False">
+                    <Button Text="Contact" Clicked="OnContactClicked" Style="{StaticResource NavBarButtonStyle}" />
+                    <Button Text="Menu" Clicked="OnMenuClicked" Style="{StaticResource NavBarButtonStyle}" />
+                    <Button Text="Order" Clicked="OnOrderClicked" Style="{StaticResource NavBarButtonStyle}" />
                 </HorizontalStackLayout>
             </Frame>
         </Grid>
+
     </AbsoluteLayout>
 </ContentView>

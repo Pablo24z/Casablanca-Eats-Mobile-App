@@ -7,22 +7,28 @@
              NavigationPage.HasBackButton="False">
 
     <Grid>
-        <!-- Confetti GIF Background -->
+        <!-- Confetti background image (GIF) gives celebration feel -->
         <Image Source="confetti.gif"
                Aspect="AspectFill"
                Opacity="0.8"
                HorizontalOptions="FillAndExpand"
                VerticalOptions="FillAndExpand" />
 
-        <!-- Main content in front of the confetti -->
-        <VerticalStackLayout Padding="20" Spacing="20" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+        <!-- Foreground content (thank you message and button) -->
+        <VerticalStackLayout Padding="20"
+                             Spacing="20"
+                             HorizontalOptions="Center"
+                             VerticalOptions="CenterAndExpand">
+
+            <!-- Confirmation title -->
             <Label Text="Order Confirmed!" 
                    FontSize="32"
-                   Style="{StaticResource TitleStyle}"
                    FontAttributes="Bold"
+                   Style="{StaticResource TitleStyle}"
                    TextColor="#FECA18"
                    HorizontalOptions="Center" />
 
+            <!-- Delivery timing info -->
             <Label Text="Your order should arrive in 25-40 minutes!" 
                    FontSize="26"
                    Style="{StaticResource TitleStyle}"
@@ -30,13 +36,13 @@
                    HorizontalTextAlignment="Center"
                    HorizontalOptions="Center" />
 
+            <!-- Return to menu button -->
             <Button Text="Go Back to Menu"
                     BackgroundColor="#7ECB37"
                     TextColor="White"
                     FontSize="18"
                     HorizontalOptions="Center"
-                    Clicked="OnGoBackClicked"/>
+                    Clicked="OnGoBackClicked" />
         </VerticalStackLayout>
     </Grid>
-
 </ContentPage>

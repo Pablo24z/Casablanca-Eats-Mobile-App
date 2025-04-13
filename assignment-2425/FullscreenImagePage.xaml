@@ -7,7 +7,7 @@
 
     <Grid>
 
-        <!-- Scrollable Zoomed View -->
+        <!-- ScrollView allows for pinch-to-zoom in both directions -->
         <ScrollView x:Name="ImageScrollView"
                     Orientation="Both"
                     HorizontalOptions="FillAndExpand"
@@ -15,16 +15,16 @@
                     BackgroundColor="#131313">
 
             <Grid>
+                <!-- Image initially zoomed out slightly for effect -->
                 <Image x:Name="FullImage"
                        Aspect="AspectFit"
+                       Scale="0.55"
                        HorizontalOptions="FillAndExpand"
-                       VerticalOptions="FillAndExpand"
-                       Scale="0.55" />
-                <!-- Starts zoomed in -->
+                       VerticalOptions="FillAndExpand" />
             </Grid>
         </ScrollView>
 
-        <!-- Close Button -->
+        <!-- Close button in top right corner -->
         <ImageButton Source="close_icon.png"
                      BackgroundColor="Transparent"
                      WidthRequest="40"

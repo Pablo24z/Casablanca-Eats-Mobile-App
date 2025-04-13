@@ -1,35 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:assignment_2425"
              x:Class="assignment_2425.MenuPage"
              BackgroundColor="#131313">
 
+    <!-- Converter for dynamic UI binding (used elsewhere) -->
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:StringNotEmptyConverter x:Key="StringNotEmptyConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <!-- Main layout split into navbar and scrollable content -->
     <Grid RowDefinitions="Auto,*">
-        <!-- Sticky Navbar -->
+
+        <!-- Sticky navigation bar always visible at top -->
         <local:StickyNavBar Grid.Row="0" />
 
-        <!-- Scrollable Content -->
+        <!-- All scrollable content below navbar -->
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Spacing="25" Padding="20">
-                <!-- Hero Section -->
+
+                <!-- Hero Section: Title + Intro Text -->
                 <VerticalStackLayout Spacing="10" Padding="0,20,0,10">
                     <Label Text="Signature Dishes to Satisfy Every Appetite"
                            Style="{StaticResource TitleStyle}"
                            TextColor="#FECA18"
                            FontSize="32"
                            HorizontalTextAlignment="Center" />
+
                     <Label Text="EXPLORE OUR MENU"
                            FontFamily="PalanquinDarkMedium"
                            FontAttributes="Bold"
                            FontSize="26"
                            TextColor="#7ECB37"
                            HorizontalTextAlignment="Center" />
+
                     <Label Text="Our menu offers the best of Caribbean cuisine at prices that won’t break the bank. Find something delicious for every budget!"
                            FontSize="18"
                            TextColor="White"
@@ -37,7 +44,7 @@
                            Padding="10,0" />
                 </VerticalStackLayout>
 
-                <!-- Menu Carousel -->
+                <!-- Image carousel showcasing front and back of menu -->
                 <CarouselView x:Name="MenuCarousel"
                               ItemsSource="{Binding MenuImages}"
                               IndicatorView="MenuIndicators"
@@ -48,6 +55,7 @@
                             <Grid>
                                 <Image Source="{Binding ImageSource}"
                                        Aspect="AspectFit">
+                                    <!-- Tappable image to open fullscreen view -->
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnImageTapped" />
                                     </Image.GestureRecognizers>
@@ -57,23 +65,24 @@
                     </CarouselView.ItemTemplate>
                 </CarouselView>
 
-                <!-- Indicators -->
+                <!-- Indicator dots for the carousel -->
                 <IndicatorView x:Name="MenuIndicators"
-                   IndicatorColor="#FFFFFF"
-                   SelectedIndicatorColor="#FECA18"
-                   HorizontalOptions="Center"
-                   HeightRequest="30"
-                   Margin="0,10,0,0" />
+                               IndicatorColor="#FFFFFF"
+                               SelectedIndicatorColor="#FECA18"
+                               HorizontalOptions="Center"
+                               HeightRequest="30"
+                               Margin="0,10,0,0" />
 
-                <!-- Popular Dishes Section -->
+                <!-- Popular Dishes Heading -->
                 <Label Text="Popular Dishes"
                        FontSize="20"
                        FontAttributes="Bold"
                        TextColor="#7ECB37" />
 
-                <!-- Dish Section with Static Stack Layout -->
+                <!-- Static Dish Cards stacked vertically -->
                 <VerticalStackLayout Spacing="20">
-                    <!-- Dish 1 -->
+
+                    <!-- Dish 1: BBQ Wings -->
                     <Frame BackgroundColor="#1C1C1C" CornerRadius="12" Padding="10">
                         <VerticalStackLayout>
                             <Image Source="bbq_wingspn.png" Aspect="AspectFill" HeightRequest="130" />
@@ -90,7 +99,7 @@
                         </VerticalStackLayout>
                     </Frame>
 
-                    <!-- Dish 2 -->
+                    <!-- Dish 2: Fried Fish -->
                     <Frame BackgroundColor="#1C1C1C" CornerRadius="12" Padding="10">
                         <VerticalStackLayout>
                             <Image Source="fried_fishtwo.png" Aspect="AspectFill" HeightRequest="130" />
@@ -107,7 +116,7 @@
                         </VerticalStackLayout>
                     </Frame>
 
-                    <!-- Dish 3 -->
+                    <!-- Dish 3: Patties -->
                     <Frame BackgroundColor="#1C1C1C" CornerRadius="12" Padding="10">
                         <VerticalStackLayout>
                             <Image Source="pattie.png" Aspect="AspectFill" HeightRequest="130" />
@@ -123,6 +132,7 @@
                                    TextColor="White" />
                         </VerticalStackLayout>
                     </Frame>
+
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

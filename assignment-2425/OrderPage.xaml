@@ -5,13 +5,13 @@
              BackgroundColor="#131313">
 
     <Grid>
-        <!-- Main layout (Stacked as rows) -->
+        <!-- Main grid layout with 4 rows: navbar, title, category tabs, dish list -->
         <Grid RowDefinitions="Auto,Auto,Auto,*">
 
-            <!-- Sticky Nav -->
+            <!-- Sticky Navbar -->
             <local:StickyNavBar Grid.Row="0" />
 
-            <!-- Menu Title -->
+            <!-- Menu Section Title -->
             <Label Grid.Row="1"
                    HorizontalOptions="Center"
                    Margin="0,20,0,10"
@@ -24,7 +24,7 @@
                 </Label.FormattedText>
             </Label>
 
-            <!-- Category Tabs -->
+            <!-- Scrollable Category Navigation Tabs -->
             <ScrollView Grid.Row="2" Orientation="Horizontal" Padding="10,5">
                 <HorizontalStackLayout Spacing="12">
                     <Button Text="Meals" Clicked="ScrollToMeals" />
@@ -35,7 +35,7 @@
                 </HorizontalStackLayout>
             </ScrollView>
 
-            <!-- Dish List -->
+            <!-- Dish List: dynamically bound to all available menu items -->
             <CollectionView x:Name="DishList"
                             Grid.Row="3"
                             ItemsSource="{Binding Dishes}"
@@ -67,7 +67,7 @@
             </CollectionView>
         </Grid>
 
-        <!-- Floating Basket Button -->
+        <!-- Floating Basket Button (appears when items are added) -->
         <Button x:Name="BasketButton"
                 BackgroundColor="#7ECB37"
                 TextColor="White"

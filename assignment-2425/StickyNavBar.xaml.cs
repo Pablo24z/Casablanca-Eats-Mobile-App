@@ -1,66 +1,74 @@
 using Microsoft.Maui.Controls;
 
-namespace assignment_2425;
-
-public partial class StickyNavBar : ContentView
+namespace assignment_2425
 {
-    private bool isDarkMode = false;
-
-    public StickyNavBar()
+    public partial class StickyNavBar : ContentView
     {
-        InitializeComponent();
-        SizeChanged += StickyNavBar_SizeChanged;
-    }
+        private bool isDarkMode = false;
 
-    private void StickyNavBar_SizeChanged(object sender, EventArgs e)
-    {
-        double width = Width;
-        bool isPhone = width < 600;
-
-        NavButtonsPanel.IsVisible = !isPhone;
-        HamburgerButton.IsVisible = isPhone;
-
-        // Delay hiding flyout to avoid glitch
-        Device.BeginInvokeOnMainThread(() =>
+        public StickyNavBar()
         {
-            if (!isPhone)
-                FlyoutMenu.IsVisible = false;
-        });
-    }
+            InitializeComponent();
+            SizeChanged += StickyNavBar_SizeChanged;
+        }
 
-    private async void OnLogoTapped(object sender, EventArgs e)
-    {
-        Device.BeginInvokeOnMainThread(() => FlyoutMenu.IsVisible = false);
-        await Shell.Current.GoToAsync("//MainPage");
-    }
+        // Adjust layout visibility based on screen width (responsive logic)
+        private void StickyNavBar_SizeChanged(object sender, EventArgs e)
+        {
+            double width = Width;
+            bool isPhone = width < 600;
 
-    private async void OnMenuClicked(object sender, EventArgs e)
-    {
-        Device.BeginInvokeOnMainThread(() => FlyoutMenu.IsVisible = false);
-        await Shell.Current.GoToAsync("//MenuPage");
-    }
+            NavButtonsPanel.IsVisible = !isPhone;
+            HamburgerButton.IsVisible = isPhone;
 
-    private async void OnContactClicked(object sender, EventArgs e)
-    {
-        Device.BeginInvokeOnMainThread(() => FlyoutMenu.IsVisible = false);
-        await Shell.Current.GoToAsync("//ContactPage");
-    }
+            // Small delay avoids glitch when switching to desktop layout
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (!isPhone)
+                    FlyoutMenu.IsVisible = false;
+            });
+        }
 
-    private async void OnOrderClicked(object sender, EventArgs e)
-    {
-        Device.BeginInvokeOnMainThread(() => FlyoutMenu.IsVisible = false);
-        await Shell.Current.GoToAsync("//OrderPage");
-    }
+        // Logo tapped - navigate to home page
+        private async void OnLogoTapped(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() => FlyoutMenu.IsVisible = false);
+            await Shell.Current.GoToAsync("//MainPage");
+        }
 
-    private void OnHamburgerClicked(object sender, EventArgs e)
-    {
-        FlyoutMenu.IsVisible = !FlyoutMenu.IsVisible;
-    }
+        // Nav to Menu page
+        private async void OnMenuClicked(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() => FlyoutMenu.IsVisible = false);
+            await Shell.Current.GoToAsync("//MenuPage");
+        }
 
-    private void OnToggleThemeClicked(object sender, EventArgs e)
-    {
-        isDarkMode = !isDarkMode;
-        App.Current.UserAppTheme = isDarkMode ? AppTheme.Dark : AppTheme.Light;
-        ThemeToggleButton.Source = isDarkMode ? "sun_icon.svg" : "moon_icon.svg";
+        // Nav to Contact page
+        private async void OnContactClicked(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() => FlyoutMenu.IsVisible = false);
+            await Shell.Current.GoToAsync("//ContactPage");
+        }
+
+        // Nav to Order page
+        private async void OnOrderClicked(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() => FlyoutMenu.IsVisible = false);
+            await Shell.Current.GoToAsync("//OrderPage");
+        }
+
+        // Toggles flyout menu on mobile when hamburger is clicked
+        private void OnHamburgerClicked(object sender, EventArgs e)
+        {
+            FlyoutMenu.IsVisible = !FlyoutMenu.IsVisible;
+        }
+
+        // Toggle app theme between light and dark
+        private void OnToggleThemeClicked(object sender, EventArgs e)
+        {
+            isDarkMode = !isDarkMode;
+            App.Current.UserAppTheme = isDarkMode ? AppTheme.Dark : AppTheme.Light;
+            ThemeToggleButton.Source = isDarkMode ? "sun_icon.svg" : "moon_icon.svg";
+        }
     }
 }

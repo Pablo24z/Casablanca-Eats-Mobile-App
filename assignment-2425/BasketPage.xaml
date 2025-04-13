@@ -7,6 +7,8 @@
              NavigationPage.HasNavigationBar="False">
 
     <VerticalStackLayout Padding="20" Spacing="10">
+
+        <!-- Basket item list bound to the ViewModel -->
         <CollectionView ItemsSource="{Binding BasketItems}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -15,22 +17,27 @@
                            Padding="10"
                            Margin="0,5"
                            HasShadow="False">
+
                         <Grid ColumnDefinitions="3*,Auto,Auto"
                               VerticalOptions="Center"
                               HorizontalOptions="FillAndExpand">
 
+                            <!-- Dish Name -->
                             <Label Text="{Binding Dish.Name}" 
                                    TextColor="White" 
                                    FontSize="16"
                                    VerticalOptions="Center"
                                    Grid.Column="0" />
 
+                            <!-- Quantity -->
                             <Label Text="{Binding Quantity}" 
                                    TextColor="White" 
                                    FontSize="16"
                                    HorizontalOptions="Center"
                                    VerticalOptions="Center"
                                    Grid.Column="1" />
+
+                            <!-- Remove Icon -->
                             <ImageButton Source="remove_icon.png"
                                          BackgroundColor="Transparent"
                                          WidthRequest="25"
@@ -49,12 +56,15 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <!-- Total cost display -->
         <Label Text="{Binding TotalCost, StringFormat='Total: £{0:0.00}'}"
                FontSize="20"
                TextColor="#FECA18"
                HorizontalOptions="End"
                Margin="0,20,0,10" />
 
+        <!-- Checkout button -->
         <Button Text="Checkout"
                 BackgroundColor="#7ECB37"
                 TextColor="White"
@@ -64,11 +74,12 @@
                 FontAttributes="Bold"
                 FontSize="18"/>
 
+        <!-- Button to simulate shake gesture -->
         <Button Text="Simulate Shake"
-        Clicked="SimulateShakeClicked"
-        BackgroundColor="DarkRed"
-        TextColor="White"
-        IsVisible="True" />
+                Clicked="SimulateShakeClicked"
+                BackgroundColor="DarkRed"
+                TextColor="White"
+                IsVisible="True" />
 
     </VerticalStackLayout>
 </ContentPage>

@@ -7,38 +7,44 @@
 
     <AbsoluteLayout>
 
-        <!-- Sticky Navbar absolutely positioned at top -->
+        <!-- Sticky navigation bar pinned to the top of the screen -->
         <local:StickyNavBar 
             AbsoluteLayout.LayoutBounds="0,0,1,70"
             AbsoluteLayout.LayoutFlags="WidthProportional"
             ZIndex="999" />
 
-        <!-- Main content below navbar -->
+        <!-- Main scrollable content starts below the navbar -->
         <ScrollView AbsoluteLayout.LayoutBounds="0,70,1,1" 
                     AbsoluteLayout.LayoutFlags="All">
 
             <VerticalStackLayout Spacing="0">
-                <!-- Hero Section -->
+
+                <!-- Fullscreen Hero Section with slideshow and welcome text -->
                 <Grid x:Name="HeroSection" HeightRequest="710">
-                    <!-- Background Image -->
+
+                    <!-- Background slideshow image -->
                     <Image x:Name="SlideshowImage"
                            Aspect="AspectFill"
                            Opacity="1" />
 
+                    <!-- Dark overlay to improve text visibility -->
                     <BoxView BackgroundColor="#99000000"
                              InputTransparent="True" />
 
+                    <!-- Centered branding and messaging over the hero image -->
                     <VerticalStackLayout x:Name="HeroContent"
                                          Padding="20"
                                          VerticalOptions="Center"
                                          HorizontalOptions="Center"
                                          Spacing="10">
 
+                        <!-- Fading logo that switches based on theme -->
                         <Image x:Name="HeroLogo"
                                Aspect="AspectFit"
                                HeightRequest="430"
                                Opacity="0" />
 
+                        <!-- Welcome title with brand-colored highlights -->
                         <Label x:Name="WelcomeLabel"
                                Style="{StaticResource TitleStyle}"
                                HorizontalTextAlignment="Center">
@@ -54,6 +60,7 @@
                             </Label.FormattedText>
                         </Label>
 
+                        <!-- Short description under the welcome text -->
                         <Label Text="At Casablanca, we serve more than just food — We serve culture. Step inside for a taste of the islands..."
                                FontSize="18"
                                FontAttributes="Bold"
@@ -61,6 +68,7 @@
                                HorizontalOptions="Center"
                                HorizontalTextAlignment="Center"/>
 
+                        <!-- Decorative wave divider -->
                         <Image Source="dividers/wavesopacitybottom.svg"
                                Aspect="AspectFill"
                                HeightRequest="100"
@@ -73,11 +81,12 @@
                     </VerticalStackLayout>
                 </Grid>
 
-                <!-- Feature Section -->
+                <!-- Informational Feature Section -->
                 <VerticalStackLayout BackgroundColor="#131313"
                                      Padding="20"
                                      Spacing="24">
 
+                    <!-- Highlight of brand identity -->
                     <Frame BackgroundColor="#FECA18" CornerRadius="12" Padding="16">
                         <Label Text="Family-Owned. Tradition-Driven. Enjoy generation-old recipes passed down with love from Hackney"
                                TextColor="#131313"
@@ -85,7 +94,7 @@
                                HorizontalTextAlignment="Center"/>
                     </Frame>
 
-                    <!-- Benefits Section -->
+                    <!-- Brand Benefits Section -->
                     <StackLayout Spacing="12">
                         <Label Text="Why Casablanca?"
                                FontFamily="PalanquinDarkMedium"
@@ -102,7 +111,7 @@
                                TextColor="#FFFFFF" FontSize="16"/>
                     </StackLayout>
 
-                    <!-- Popular Dishes Section -->
+                    <!-- Popular dish highlights -->
                     <StackLayout>
                         <Label Text="Popular Dishes"
                                FontSize="22"
@@ -124,7 +133,7 @@
                         </Frame>
                     </StackLayout>
 
-                    <!-- CTA Section -->
+                    <!-- Call to action for new customers -->
                     <Frame BackgroundColor="#FA452D" CornerRadius="10" Padding="20">
                         <Label Text="Enjoy 10% off your first dine-in experience! Order online or visit us today."
                                TextColor="White"
@@ -134,6 +143,5 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>
-
     </AbsoluteLayout>
 </ContentPage>
