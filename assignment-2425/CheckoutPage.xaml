@@ -1,47 +1,126 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:assignment_2425"
              x:Class="assignment_2425.CheckoutPage"
              BackgroundColor="#131313"
              NavigationPage.HasNavigationBar="False">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringNotEmptyConverter x:Key="StringNotEmptyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
             <Label Text="Checkout"
-                   FontSize="32"
+                   FontSize="40"
                    TextColor="#FECA18"
                    HorizontalOptions="Center" />
 
-            <Entry x:Name="NameEntry" Placeholder="Full Name" BackgroundColor="White" TextColor="Black" />
-            <Entry x:Name="PhoneEntry" Placeholder="Phone Number" BackgroundColor="White" TextColor="Black" Keyboard="Telephone" />
+            <Entry Placeholder="Full Name*" 
+                   Text="{Binding Name}" 
+                   TextColor="White" 
+                   PlaceholderColor="#D3D3D3"
+                   BackgroundColor="#1E1E1E"/>
+            <Label Text="{Binding NameError}" 
+                   TextColor="Red" 
+                   FontSize="12" 
+                   IsVisible="{Binding NameError, Converter={StaticResource StringNotEmptyConverter}}" />
+
+            <Entry Placeholder="Phone Number*" 
+                   Text="{Binding Phone}" 
+                   TextColor="White" 
+                   PlaceholderColor="#D3D3D3" 
+                   Keyboard="Telephone"
+                   BackgroundColor="#1E1E1E"/>
+            <Label Text="{Binding PhoneError}" 
+                   TextColor="Red" 
+                   FontSize="12" 
+                   IsVisible="{Binding PhoneError, Converter={StaticResource StringNotEmptyConverter}}" />
 
             <HorizontalStackLayout Spacing="10">
-                <Entry x:Name="StreetEntry" Placeholder="Street Address" BackgroundColor="White" TextColor="Black" HorizontalOptions="FillAndExpand" />
-                <ImageButton Source="gps_icon.png" Clicked="OnGetLocationClicked" WidthRequest="35" HeightRequest="35" BackgroundColor="Transparent" />
+                <Entry Placeholder="Street Address*" 
+                       Text="{Binding Street}" 
+                       TextColor="White" 
+                       PlaceholderColor="#D3D3D3"
+                       BackgroundColor="#1E1E1E"
+                       HorizontalOptions="FillAndExpand" />
+                <ImageButton Source="gps_icon.png" 
+                             WidthRequest="25" 
+                             HeightRequest="25" 
+                             BackgroundColor="Transparent"
+                             Clicked="OnGetLocationClicked" />
             </HorizontalStackLayout>
 
-            <Entry x:Name="CityEntry" Placeholder="City" BackgroundColor="White" TextColor="Black" />
-            <Entry x:Name="PostcodeEntry" Placeholder="Postcode" BackgroundColor="White" TextColor="Black" />
+            <Entry Placeholder="City*" 
+                   Text="{Binding City}" 
+                   TextColor="White" 
+                   PlaceholderColor="#D3D3D3"
+                   BackgroundColor="#1E1E1E"/>
+            <Entry Placeholder="Postcode*" 
+                   Text="{Binding Postcode}" 
+                   TextColor="White" 
+                   PlaceholderColor="#D3D3D3"
+                   BackgroundColor="#1E1E1E"/>
 
             <Label Text="Card Details"
-                   FontSize="20"
-                   TextColor="White"
+                   FontSize="40"
+                   TextColor="#FECA18"
+                   HorizontalOptions="Center"
                    Margin="0,20,0,0" />
 
-            <Entry x:Name="CardNameEntry" Placeholder="Name on Card" BackgroundColor="White" TextColor="Black" />
-            <Entry x:Name="CardNumberEntry" Placeholder="Card Number" BackgroundColor="White" TextColor="Black" Keyboard="Numeric" />
+            <Entry Placeholder="Name on Card*" 
+                   Text="{Binding CardName}" 
+                   TextColor="White" 
+                   PlaceholderColor="#D3D3D3"
+                   BackgroundColor="#1E1E1E"/>
+            <Entry Placeholder="Card Number*" 
+                   Text="{Binding CardNumber}" 
+                   TextColor="White" 
+                   PlaceholderColor="#D3D3D3"
+                   MaxLength="12"
+                   BackgroundColor="#1E1E1E"
+                   Keyboard="Numeric"/>
+            <Label Text="{Binding CardError}" 
+                   TextColor="Red" 
+                   FontSize="12" 
+                   IsVisible="{Binding CardError, Converter={StaticResource StringNotEmptyConverter}}" />
 
             <HorizontalStackLayout Spacing="10">
-                <Entry x:Name="CVVEntry" Placeholder="CVV" BackgroundColor="White" TextColor="Black" Keyboard="Numeric" WidthRequest="100" />
-                <Entry x:Name="ExpiryEntry" Placeholder="MM/YY" BackgroundColor="White" TextColor="Black" WidthRequest="100" />
+                <Entry Placeholder="CVV*" 
+                       Text="{Binding CVV}" 
+                       MaxLength="4"
+                       TextColor="White"
+                       PlaceholderColor="#D3D3D3"
+                       BackgroundColor="#1E1E1E"
+                       Keyboard="Numeric"
+                       WidthRequest="100" />
+                <Entry Placeholder="MM/YY*" 
+                       Text="{Binding Expiry}" 
+                       MaxLength="5"
+                       TextColor="White"
+                       PlaceholderColor="#D3D3D3"
+                       BackgroundColor="#1E1E1E"
+                       WidthRequest="100"
+                       TextChanged="ExpiryEntry_TextChanged"/>
             </HorizontalStackLayout>
+            <Label Text="{Binding CVVError}" 
+                   TextColor="Red" 
+                   FontSize="12" 
+                   IsVisible="{Binding CVVError, Converter={StaticResource StringNotEmptyConverter}}" />
+            <Label Text="{Binding ExpiryError}" 
+                   TextColor="Red" 
+                   FontSize="12" 
+                   IsVisible="{Binding ExpiryError, Converter={StaticResource StringNotEmptyConverter}}" />
 
             <Button Text="Place Order"
                     BackgroundColor="#7ECB37"
                     TextColor="White"
                     FontAttributes="Bold"
                     FontSize="18"
-                    Clicked="OnSubmitOrderClicked" />
+                    Clicked="OnPlaceOrderClicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

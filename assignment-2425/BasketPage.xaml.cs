@@ -31,7 +31,7 @@ namespace assignment_2425
 
         private async void OnCheckoutClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Checkout", "Proceeding to checkout!", "OK");
+            await Shell.Current.GoToAsync(nameof(CheckoutPage));
         }
 
         private void SimulateShakeClicked(object sender, EventArgs e)

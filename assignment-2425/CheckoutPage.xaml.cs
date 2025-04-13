@@ -8,80 +8,42 @@ using System.Text.RegularExpressions;
 using Microsoft.Maui.ApplicationModel.Communication;
 using Microsoft.Maui.Devices;
 
-namespace assignment_2425
+using assignment_2425;
+public partial class CheckoutPage : ContentPage
 {
-    public partial class CheckoutPage : ContentPage
+    private CheckoutViewModel viewModel;
+
+    public CheckoutPage()
     {
-        public CheckoutPage()
+        InitializeComponent();
+        viewModel = new CheckoutViewModel();
+        BindingContext = viewModel;
+    }
+
+    private async void OnPlaceOrderClicked(object sender, EventArgs e)
+    {
+        if (!viewModel.ValidateForm())
         {
-            InitializeComponent();
+            return;
         }
 
-        private async void OnGetLocationClicked(object sender, EventArgs e)
+        var orderNumber = $"#{new Random().Next(1000, 9999)}";
+        Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(300));
+        await Toast.Make($"Order {orderNumber} placed! ETA 25–40 min").Show();
+        await Shell.Current.GoToAsync($"OrderConfirmationPage?orderNumber={orderNumber}");
+    }
+
+    private void ExpiryEntry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (sender is Entry entry)
         {
-            try
-            {
-                var location = await Geolocation.GetLastKnownLocationAsync();
-
-                if (location == null)
-                {
-                    location = await Geolocation.GetLocationAsync(new GeolocationRequest
-                    {
-                        DesiredAccuracy = GeolocationAccuracy.Medium,
-                        Timeout = TimeSpan.FromSeconds(10)
-                    });
-                }
-
-                if (location != null)
-                {
-                    var placemarks = await Geocoding.GetPlacemarksAsync(location);
-                    var placemark = placemarks?.FirstOrDefault();
-
-                    if (placemark != null)
-                    {
-                        StreetEntry.Text = placemark.Thoroughfare;
-                        CityEntry.Text = placemark.Locality;
-                        PostcodeEntry.Text = placemark.PostalCode;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", "Unable to get location: " + ex.Message, "OK");
-            }
-        }
-
-        private async void OnSubmitOrderClicked(object sender, EventArgs e)
-        {
-            // Basic form validation
-            if (string.IsNullOrWhiteSpace(NameEntry.Text) ||
-                string.IsNullOrWhiteSpace(PhoneEntry.Text) ||
-                string.IsNullOrWhiteSpace(CardNameEntry.Text) ||
-                string.IsNullOrWhiteSpace(CardNumberEntry.Text) ||
-                string.IsNullOrWhiteSpace(CVVEntry.Text) ||
-                string.IsNullOrWhiteSpace(ExpiryEntry.Text))
-            {
-                await DisplayAlert("Missing Info", "Please complete all required fields.", "OK");
-                return;
-            }
-
-            if (!Regex.IsMatch(CardNumberEntry.Text, "^\-?[0-9]{16}$") ||
-                !Regex.IsMatch(CVVEntry.Text, "^[0-9]{3}$"))
-            {
-                await DisplayAlert("Invalid Card Info", "Please check your card number and CVV.", "OK");
-                return;
-            }
-
-            // Simulate Order Number
-            var rand = new Random();
-            var orderNumber = $"#{rand.Next(1000, 9999)}";
-
-            // Toast & Vibrate
-            Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(300));
-            await Toast.Make($"Order {orderNumber} placed! ETA 25-40 min").Show();
-
-            // Navigate to confirmation page
-            await Shell.Current.GoToAsync($"OrderConfirmationPage?orderNumber={orderNumber}");
+            var text = entry.Text?.Replace("/", "") ?? "";
+            if (text.Length > 2)
+                text = text.Insert(2, "/");
+            if (text.Length > 5)
+                text = text.Substring(0, 5);
+            entry.Text = text;
         }
     }
+
 }
