@@ -47,14 +47,14 @@ namespace assignment_2425
 
                 if (pressDuration.TotalMilliseconds >= 600)
                 {
-                    // Long press: Add to basket
+                    // Long Press = Add to basket
                     HapticFeedback.Default.Perform(HapticFeedbackType.LongPress);
                     BasketManager.Instance.AddToBasket(dish);
                     await Toast.Make($"{dish.Name} added to basket").Show();
                 }
                 else
                 {
-                    // Short press: Show detail
+                    // Short Press = Navigate to detail
                     HapticFeedback.Default.Perform(HapticFeedbackType.Click);
                     await Shell.Current.GoToAsync(nameof(DishDetailPage), true, new Dictionary<string, object>
                     {
