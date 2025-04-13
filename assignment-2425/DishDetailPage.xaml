@@ -16,7 +16,8 @@
 
                 <Label Text="{Binding DisplayPrice}"
                        FontSize="20"
-                       TextColor="#FECA18" />
+                       TextColor="#FECA18"
+                       FontAttributes="Bold" />
 
                 <Label Text="{Binding Description}"
                        FontSize="16"
@@ -31,11 +32,16 @@
         </ScrollView>
 
         <ImageButton Source="close_icon.png"
-                     Clicked="OnCloseClicked"
-                     WidthRequest="40"
-                     HeightRequest="40"
-                     BackgroundColor="Transparent"
-                     HorizontalOptions="End"
-                     VerticalOptions="Start" />
+             Clicked="OnCloseClicked"
+             WidthRequest="40"
+             HeightRequest="40"
+             Padding="5"
+             Margin="10"
+             BackgroundColor="Transparent"
+             HorizontalOptions="End"
+             VerticalOptions="Start"
+             IsEnabled="True"
+             InputTransparent="False"/>
+
     </Grid>
 </ContentPage>

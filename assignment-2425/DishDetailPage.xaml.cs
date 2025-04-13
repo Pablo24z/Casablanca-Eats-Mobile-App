@@ -27,7 +27,7 @@ public partial class DishDetailPage : ContentPage
 
     private async void OnCloseClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("..");
+        await Shell.Current.GoToAsync("//OrderPage");
     }
 
     private async void OnAddToBasketClicked(object sender, EventArgs e)
