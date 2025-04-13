@@ -10,6 +10,7 @@ namespace assignment_2425
     public partial class OrderPage : ContentPage
     {
         private OrderViewModel viewModel;
+        private DateTime _pressStartTime;
 
         public OrderPage()
         {
@@ -33,19 +34,34 @@ namespace assignment_2425
         private void ScrollToSoups(object sender, EventArgs e) => ScrollToCategory("Soups");
         private void ScrollToDrinks(object sender, EventArgs e) => ScrollToCategory("Drinks");
 
-        public async Task NavigateToDetailPage(DishItem dish)
+        private void OnDishPressed(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync(nameof(DishDetailPage), true, new Dictionary<string, object>
-            {
-                { "Dish", dish }
-            });
+            _pressStartTime = DateTime.UtcNow;
         }
 
-        public async Task AddToBasketWithFeedback(DishItem dish)
+        private async void OnDishReleased(object sender, EventArgs e)
         {
-            HapticFeedback.Default.Perform(HapticFeedbackType.LongPress);
-            BasketManager.Instance.AddToBasket(dish);
-            await Toast.Make($"{dish.Name} added to basket").Show();
+            if (sender is Button button && button.CommandParameter is DishItem dish)
+            {
+                var pressDuration = DateTime.UtcNow - _pressStartTime;
+
+                if (pressDuration.TotalMilliseconds >= 600)
+                {
+                    // Long press: Add to basket
+                    HapticFeedback.Default.Perform(HapticFeedbackType.LongPress);
+                    BasketManager.Instance.AddToBasket(dish);
+                    await Toast.Make($"{dish.Name} added to basket").Show();
+                }
+                else
+                {
+                    // Short press: Show detail
+                    HapticFeedback.Default.Perform(HapticFeedbackType.Click);
+                    await Shell.Current.GoToAsync(nameof(DishDetailPage), true, new Dictionary<string, object>
+                    {
+                        { "Dish", dish }
+                    });
+                }
+            }
         }
     }
 }

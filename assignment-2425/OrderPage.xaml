@@ -7,15 +7,16 @@
 
     <Grid RowDefinitions="Auto,Auto,Auto,*">
 
-        <!-- Sticky NavBar -->
+        <!-- Sticky Nav -->
         <local:StickyNavBar Grid.Row="0" />
 
-        <!-- Title -->
+        <!-- Menu Title with Branding -->
         <Label Grid.Row="1"
                Style="{StaticResource TitleStyle}"
                HorizontalOptions="Center"
                Margin="0,20,0,10"
-               HorizontalTextAlignment="Center">
+               HorizontalTextAlignment="Center"
+               BackgroundColor="#131313">
             <Label.FormattedText>
                 <FormattedString>
                     <Span Text="Our " TextColor="#7ECB37" FontSize="40"/>
@@ -24,8 +25,11 @@
             </Label.FormattedText>
         </Label>
 
-        <!-- Category Tabs -->
-        <ScrollView Grid.Row="2" Orientation="Horizontal" Padding="10,5">
+        <!-- Horizontal Category Tabs -->
+        <ScrollView Grid.Row="2"
+                    Orientation="Horizontal"
+                    BackgroundColor="#131313"
+                    Padding="10,5">
             <HorizontalStackLayout Spacing="12">
                 <Button Text="Meals" Clicked="ScrollToMeals" />
                 <Button Text="Portions" Clicked="ScrollToPortions" />
@@ -35,7 +39,7 @@
             </HorizontalStackLayout>
         </ScrollView>
 
-        <!-- Dish Collection -->
+        <!-- Dishes List -->
         <CollectionView x:Name="DishList"
                         Grid.Row="3"
                         ItemsSource="{Binding Dishes}"
@@ -46,21 +50,20 @@
                            Padding="10"
                            BackgroundColor="#1E1E1E"
                            CornerRadius="10">
-                        <Grid>
-                            <Grid.Behaviors>
-                                <local:PressBehaviour Dish="{Binding}" />
-                            </Grid.Behaviors>
+                        <VerticalStackLayout>
+                            <Button Text="{Binding Name}"
+                                    FontSize="16"
+                                    TextColor="White"
+                                    FontFamily="PalanquinDarkMedium"
+                                    BackgroundColor="Transparent"
+                                    Pressed="OnDishPressed"
+                                    Released="OnDishReleased"
+                                    CommandParameter="{Binding}" />
 
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Name}"
-                                       TextColor="White"
-                                       FontSize="16"
-                                       FontFamily="PalanquinDarkMedium" />
-                                <Label Text="{Binding DisplayPrice}"
-                                       TextColor="#FECA18"
-                                       FontSize="14" />
-                            </VerticalStackLayout>
-                        </Grid>
+                            <Label Text="{Binding DisplayPrice}"
+                                   TextColor="#FECA18"
+                                   FontSize="14" />
+                        </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
