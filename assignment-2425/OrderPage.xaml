@@ -57,7 +57,9 @@
                                         CommandParameter="{Binding}" />
                                 <Label Text="{Binding DisplayPrice}"
                                        TextColor="#FECA18"
-                                       FontSize="14" />
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"/>
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>

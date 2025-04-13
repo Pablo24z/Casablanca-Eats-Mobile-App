@@ -1,9 +1,18 @@
-namespace assignment_2425;
+using Microsoft.Maui.Controls;
 
-public partial class OrderConfirmationPage : ContentPage
+namespace assignment_2425
 {
-	public OrderConfirmationPage()
-	{
-		InitializeComponent();
-	}
+    public partial class OrderConfirmationPage : ContentPage
+    {
+        public OrderConfirmationPage()
+        {
+            InitializeComponent();
+        }
+
+        // Navigate back to the OrderPage or any page you want
+        private async void OnGoBackClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//OrderPage");
+        }
+    }
 }
