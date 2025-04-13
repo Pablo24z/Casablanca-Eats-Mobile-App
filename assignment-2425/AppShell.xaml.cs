@@ -7,9 +7,11 @@
             InitializeComponent();
 
             Routing.RegisterRoute("FullscreenImagePage", typeof(FullscreenImagePage));
+            Routing.RegisterRoute("OrderConfirmationPage", typeof(OrderConfirmationPage));
             Routing.RegisterRoute(nameof(DishDetailPage), typeof(DishDetailPage));
             Routing.RegisterRoute(nameof(BasketPage), typeof(BasketPage));
             Routing.RegisterRoute(nameof(CheckoutPage), typeof(CheckoutPage));
+            
 
         }
     }

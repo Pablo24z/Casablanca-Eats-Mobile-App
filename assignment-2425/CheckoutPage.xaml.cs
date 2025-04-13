@@ -8,42 +8,77 @@ using System.Text.RegularExpressions;
 using Microsoft.Maui.ApplicationModel.Communication;
 using Microsoft.Maui.Devices;
 
-using assignment_2425;
-public partial class CheckoutPage : ContentPage
+namespace assignment_2425
 {
-    private CheckoutViewModel viewModel;
-
-    public CheckoutPage()
+    public partial class CheckoutPage : ContentPage
     {
-        InitializeComponent();
-        viewModel = new CheckoutViewModel();
-        BindingContext = viewModel;
-    }
+        private CheckoutViewModel viewModel;
 
-    private async void OnPlaceOrderClicked(object sender, EventArgs e)
-    {
-        if (!viewModel.ValidateForm())
+        public CheckoutPage()
         {
-            return;
+            InitializeComponent();
+            viewModel = new CheckoutViewModel();
+            BindingContext = viewModel;
         }
 
-        var orderNumber = $"#{new Random().Next(1000, 9999)}";
-        Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(300));
-        await Toast.Make($"Order {orderNumber} placed! ETA 25–40 min").Show();
-        await Shell.Current.GoToAsync($"OrderConfirmationPage?orderNumber={orderNumber}");
-    }
-
-    private void ExpiryEntry_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        if (sender is Entry entry)
+        private async void OnPlaceOrderClicked(object sender, EventArgs e)
         {
-            var text = entry.Text?.Replace("/", "") ?? "";
-            if (text.Length > 2)
-                text = text.Insert(2, "/");
-            if (text.Length > 5)
-                text = text.Substring(0, 5);
-            entry.Text = text;
+            if (!viewModel.ValidateForm())
+                return;
+
+            var orderNumber = $"#{new Random().Next(1000, 9999)}";
+            var encodedOrderNumber = Uri.EscapeDataString(orderNumber);
+            Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(300));
+            await Toast.Make($"Order {orderNumber} placed! *Vibration* ETA 25–40 min").Show();
+            await Shell.Current.GoToAsync($"OrderConfirmationPage?orderNumber={encodedOrderNumber}");
+        }
+
+        private void ExpiryEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (sender is Entry entry)
+            {
+                var text = entry.Text?.Replace("/", "") ?? "";
+                if (text.Length > 2)
+                    text = text.Insert(2, "/");
+                if (text.Length > 5)
+                    text = text.Substring(0, 5);
+                entry.Text = text;
+            }
+        }
+
+        private async void OnGetLocationClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var location = await Geolocation.GetLastKnownLocationAsync();
+
+                if (location == null)
+                {
+                    location = await Geolocation.GetLocationAsync(new GeolocationRequest
+                    {
+                        DesiredAccuracy = GeolocationAccuracy.Medium,
+                        Timeout = TimeSpan.FromSeconds(10)
+                    });
+                }
+
+                if (location != null)
+                {
+                    var placemarks = await Geocoding.GetPlacemarksAsync(location);
+                    var placemark = placemarks?.FirstOrDefault();
+
+                    if (placemark != null)
+                    {
+                        viewModel.Street = placemark.Thoroughfare;
+                        viewModel.City = placemark.Locality;
+                        viewModel.Postcode = placemark.PostalCode;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"Unable to get location: {ex.Message}", "OK");
+            }
         }
     }
-
 }
+

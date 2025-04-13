@@ -16,6 +16,7 @@
         <VerticalStackLayout Padding="20" Spacing="15">
             <Label Text="Checkout"
                    FontSize="40"
+                   Style="{StaticResource TitleStyle}"
                    TextColor="#FECA18"
                    HorizontalOptions="Center" />
 
@@ -67,6 +68,7 @@
 
             <Label Text="Card Details"
                    FontSize="40"
+                   Style="{StaticResource TitleStyle}"
                    TextColor="#FECA18"
                    HorizontalOptions="Center"
                    Margin="0,20,0,0" />

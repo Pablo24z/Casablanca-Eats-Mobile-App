@@ -8,7 +8,6 @@ namespace assignment_2425
     {
         private string name, phone, street, city, postcode;
         private string cardName, cardNumber, cvv, expiry;
-        private string errorMessage;
 
         public string Name { get => name; set => SetProperty(ref name, value); }
         public string Phone { get => phone; set => SetProperty(ref phone, value); }
@@ -21,44 +20,89 @@ namespace assignment_2425
         public string CVV { get => cvv; set => SetProperty(ref cvv, value); }
         public string Expiry { get => expiry; set => SetProperty(ref expiry, value); }
 
-        public string ErrorMessage
-        {
-            get => errorMessage;
-            set => SetProperty(ref errorMessage, value);
-        }
+        // Individual error messages
+        public string NameError { get; set; }
+        public string PhoneError { get; set; }
+        public string CardError { get; set; }
+        public string CVVError { get; set; }
+        public string ExpiryError { get; set; }
 
         public bool ValidateForm()
         {
-            if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Phone) ||
-                string.IsNullOrWhiteSpace(Street) || string.IsNullOrWhiteSpace(City) || string.IsNullOrWhiteSpace(Postcode) ||
-                string.IsNullOrWhiteSpace(CardName) || string.IsNullOrWhiteSpace(CardNumber) ||
-                string.IsNullOrWhiteSpace(CVV) || string.IsNullOrWhiteSpace(Expiry))
+            bool isValid = true;
+
+            NameError = string.IsNullOrWhiteSpace(Name) ? "Full name is required." : "";
+            PhoneError = string.IsNullOrWhiteSpace(Phone) ? "Phone number is required." : "";
+
+            CardError = string.IsNullOrWhiteSpace(CardNumber)
+                ? "Card number is required."
+                : (!Regex.IsMatch(CardNumber, @"^\d{12}$") ? "Card number must be 12 digits." : "");
+
+            CVVError = string.IsNullOrWhiteSpace(CVV)
+                ? "CVV is required."
+                : (!Regex.IsMatch(CVV, @"^\d{3,4}$") ? "CVV must be 3 or 4 digits." : "");
+
+            //REPLACE this whole block with the one below
+            if (string.IsNullOrWhiteSpace(Expiry))
             {
-                ErrorMessage = "Please fill in all fields.";
-                return false;
+                ExpiryError = "Expiry date is required.";
+                isValid = false;
+            }
+            else if (!Regex.IsMatch(Expiry, @"^\d{2}/\d{2}$"))
+            {
+                ExpiryError = "Expiry must be in MM/YY format.";
+                isValid = false;
+            }
+            else
+            {
+                try
+                {
+                    var parts = Expiry.Split('/');
+                    int month = int.Parse(parts[0]);
+                    int year = int.Parse(parts[1]) + 2000;
+
+                    if (month < 1 || month > 12)
+                    {
+                        ExpiryError = "Invalid month in expiry date.";
+                        isValid = false;
+                    }
+                    else
+                    {
+                        var expiryDate = new DateTime(year, month, 1).AddMonths(1).AddDays(-1);
+                        if (expiryDate < DateTime.Today.AddMonths(1))
+                        {
+                            ExpiryError = "Card must be valid for at least 1 more month.";
+                            isValid = false;
+                        }
+                        else
+                        {
+                            ExpiryError = "";
+                        }
+                    }
+                }
+                catch
+                {
+                    ExpiryError = "Invalid expiry format.";
+                    isValid = false;
+                }
             }
 
-            if (!Regex.IsMatch(CardNumber, @"^\d{12}$"))
+            if (!string.IsNullOrEmpty(NameError) || !string.IsNullOrEmpty(PhoneError)
+                || !string.IsNullOrEmpty(CardError) || !string.IsNullOrEmpty(CVVError)
+                || !string.IsNullOrEmpty(ExpiryError))
             {
-                ErrorMessage = "Card number must be 12 digits.";
-                return false;
+                isValid = false;
             }
 
-            if (!Regex.IsMatch(CVV, @"^\d{3,4}$"))
-            {
-                ErrorMessage = "CVV must be 3 or 4 digits.";
-                return false;
-            }
+            OnPropertyChanged(nameof(NameError));
+            OnPropertyChanged(nameof(PhoneError));
+            OnPropertyChanged(nameof(CardError));
+            OnPropertyChanged(nameof(CVVError));
+            OnPropertyChanged(nameof(ExpiryError));
 
-            if (!Regex.IsMatch(Expiry, @"^\d{2}/\d{2}$"))
-            {
-                ErrorMessage = "Expiry must be in MM/YY format.";
-                return false;
-            }
-
-            ErrorMessage = "";
-            return true;
+            return isValid;
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void SetProperty<T>(ref T field, T value, [CallerMemberName] string name = null)
@@ -69,5 +113,9 @@ namespace assignment_2425
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
         }
+
+        protected void OnPropertyChanged(string propertyName)
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+
 }
