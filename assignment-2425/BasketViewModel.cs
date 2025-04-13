@@ -7,9 +7,18 @@ namespace assignment_2425
 {
     public class BasketViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<BasketItem> BasketItems { get; set; } = new();
+        private ObservableCollection<BasketItem> _basketItems = new();
+        public ObservableCollection<BasketItem> BasketItems
+        {
+            get => _basketItems;
+            set
+            {
+                _basketItems = value;
+                OnPropertyChanged(nameof(BasketItems));
+            }
+        }
 
-        public decimal TotalCost => BasketItems.Sum(item => item.Dish.Price * item.Quantity);
+        public decimal TotalCost => BasketItems.Sum(item => item.TotalPrice);
 
         public BasketViewModel()
         {
@@ -18,30 +27,23 @@ namespace assignment_2425
 
         public void LoadItemsFromBasket()
         {
-            BasketItems.Clear();
-
             var grouped = BasketManager.Instance.BasketItems
                 .GroupBy(item => item.Dish.Name)
-                .Select(group =>
-                    new BasketItem
-                    {
-                        Dish = group.First().Dish,
-                        Quantity = group.Sum(x => x.Quantity)
-                    });
+                .Select(group => new BasketItem
+                {
+                    Dish = group.First().Dish,
+                    Quantity = group.Sum(x => x.Quantity)
+                });
 
-
-            foreach (var item in grouped)
-            {
-                BasketItems.Add(item);
-            }
-
+            BasketItems = new ObservableCollection<BasketItem>(grouped);
             OnPropertyChanged(nameof(TotalCost));
         }
 
         public void RemoveItem(BasketItem item)
         {
-            // Remove one instance of the dish from BasketManager
-            var match = BasketItems.FirstOrDefault(d => d.Dish.Name == item.Dish.Name);
+            var match = BasketManager.Instance.BasketItems
+                .FirstOrDefault(d => d.Dish.Name == item.Dish.Name);
+
             if (match != null)
                 BasketManager.Instance.BasketItems.Remove(match);
 

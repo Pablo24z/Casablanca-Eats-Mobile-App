@@ -1,6 +1,11 @@
-using assignment_2425.Models;
-using System;
+﻿using assignment_2425.Models;
 using Microsoft.Maui.Controls;
+using System;
+using System.Linq;
+using Microsoft.Maui.Devices.Sensors;
+using CommunityToolkit.Maui.Alerts;
+using System.Diagnostics;
+
 
 namespace assignment_2425
 {
@@ -19,20 +24,57 @@ namespace assignment_2425
         {
             if (sender is ImageButton button && button.CommandParameter is BasketItem item)
             {
-                System.Diagnostics.Debug.WriteLine($"Removing item: {item.Dish.Name}");
-                viewModel.RemoveItem(item); // This was missing!
+                viewModel.RemoveItem(item);
+                Toast.Make("Item has been removed from your order!").Show();
             }
         }
 
         private async void OnCheckoutClicked(object sender, EventArgs e)
         {
             await DisplayAlert("Checkout", "Proceeding to checkout!", "OK");
-            // TODO: Add real checkout logic
         }
 
-        private void TestClickHandler(object sender, EventArgs e)
+        private void SimulateShakeClicked(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Test button clicked!");
+            OnShakeDetected(this, EventArgs.Empty);
+        }
+
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (!Accelerometer.IsMonitoring)
+            {
+                Accelerometer.ShakeDetected += OnShakeDetected;
+                Accelerometer.Start(SensorSpeed.UI);
+            }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            if (Accelerometer.IsMonitoring)
+            {
+                Accelerometer.ShakeDetected -= OnShakeDetected;
+                Accelerometer.Stop();
+            }
+        }
+
+        private void OnShakeDetected(object sender, EventArgs e)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                Debug.WriteLine(" Shake detected!");
+
+                if (viewModel.BasketItems.Any())
+                {
+                    BasketManager.Instance.RemoveLastItem();
+                    viewModel.LoadItemsFromBasket();
+                    Toast.Make("Last item removed by shake!").Show();
+                }
+            });
         }
 
     }
