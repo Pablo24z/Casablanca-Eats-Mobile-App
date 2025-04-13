@@ -3,18 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using assignment_2425.Models;
 
 namespace assignment_2425.Models
 {
-    public class DishItem
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Image { get; set; }
-        public decimal Price { get; set; }
-        public string Category { get; set; }
-        public string DisplayPrice => "£" + Price.ToString("0.00");
-    }
 
     public class OrderViewModel : INotifyPropertyChanged
     {

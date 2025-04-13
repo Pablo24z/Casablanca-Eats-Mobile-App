@@ -1,36 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using assignment_2425.Models;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using assignment_2425.Models;
 
-namespace assignment_2425;
+public class BasketItem
+{
+    public DishItem Dish { get; set; }
+    public int Quantity { get; set; } = 1;
+    public decimal TotalPrice => Dish.Price * Quantity;
+}
 
 public class BasketManager
 {
     private static BasketManager _instance;
     public static BasketManager Instance => _instance ??= new BasketManager();
 
-    public ObservableCollection<DishItem> BasketItems { get; private set; } = new();
+    public ObservableCollection<BasketItem> BasketItems { get; private set; } = new();
 
     private BasketManager() { }
 
     public void AddToBasket(DishItem item)
     {
-        BasketItems.Add(item);
+        var existing = BasketItems.FirstOrDefault(x => x.Dish.Name == item.Name);
+        if (existing != null)
+            existing.Quantity++;
+        else
+            BasketItems.Add(new BasketItem { Dish = item });
     }
 
     public void RemoveLastItem()
     {
         if (BasketItems.Any())
-            BasketItems.RemoveAt(BasketItems.Count - 1);
+        {
+            var last = BasketItems.Last();
+            if (last.Quantity > 1)
+                last.Quantity--;
+            else
+                BasketItems.Remove(last);
+        }
     }
 
-    public void ClearBasket()
+    public void RemoveItem(BasketItem item)
     {
-        BasketItems.Clear();
+        if (BasketItems.Contains(item))
+            BasketItems.Remove(item);
     }
-}
 
+    public decimal TotalCost => BasketItems.Sum(x => x.TotalPrice);
+}

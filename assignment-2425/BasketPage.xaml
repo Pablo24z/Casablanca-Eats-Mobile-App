@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:assignment_2425"
+             x:Class="assignment_2425.BasketPage"
+             BackgroundColor="#131313"
+             NavigationPage.HasNavigationBar="False">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <CollectionView ItemsSource="{Binding BasketItems}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="#1E1E1E"
+                   CornerRadius="10"
+                   Padding="10"
+                   Margin="0,5"
+                   HasShadow="False">
+                        <Grid ColumnDefinitions="3*,Auto,Auto"
+                      VerticalOptions="Center"
+                      HorizontalOptions="FillAndExpand">
+
+                            <Label Text="{Binding Dish.Name}" 
+                           TextColor="White" 
+                           FontSize="16"
+                           VerticalOptions="Center"
+                           Grid.Column="0" />
+
+                            <Label Text="{Binding Quantity}" 
+                           TextColor="White" 
+                           FontSize="16"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Grid.Column="1" />
+                            <ImageButton Source="remove_icon.png"
+             BackgroundColor="Transparent"
+             WidthRequest="35"
+             HeightRequest="35"
+             Padding="0"
+             Margin="5"
+             Grid.Column="2"
+             HorizontalOptions="End"
+             VerticalOptions="Center"
+             Clicked="OnRemoveClicked"
+             CommandParameter="{Binding}"
+             InputTransparent="False"
+             IsEnabled="True"
+             />
+
+
+
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Label Text="{Binding TotalCost, StringFormat='Total: £{0:0.00}'}"
+               FontSize="20"
+               TextColor="#FECA18"
+               HorizontalOptions="End"
+               Margin="0,20,0,10" />
+
+
+        <Button Text="Test Click"
+        Clicked="TestClickHandler"
+        BackgroundColor="Red"
+        HorizontalOptions="Center" />
+
+        <Button Text="Checkout"
+                BackgroundColor="#7ECB37"
+                TextColor="White"
+                CornerRadius="10"
+                Clicked="OnCheckoutClicked"
+                HorizontalOptions="Fill"
+                FontAttributes="Bold"
+                FontSize="18"/>
+    </VerticalStackLayout>
+</ContentPage>

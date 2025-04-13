@@ -4,6 +4,7 @@ using Microsoft.Maui.Devices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace assignment_2425
 {
@@ -17,6 +18,10 @@ namespace assignment_2425
             InitializeComponent();
             viewModel = new OrderViewModel();
             BindingContext = viewModel;
+
+            // Subscribe to basket changes
+            BasketManager.Instance.BasketItems.CollectionChanged += BasketItems_CollectionChanged;
+            UpdateBasketButton();
         }
 
         private void ScrollToCategory(string category)
@@ -45,23 +50,47 @@ namespace assignment_2425
             {
                 var pressDuration = DateTime.UtcNow - _pressStartTime;
 
-                if (pressDuration.TotalMilliseconds >= 600)
+                if (pressDuration.TotalMilliseconds >= 400)
                 {
-                    // Long Press = Add to basket
+                    // Long press: Add to basket
                     HapticFeedback.Default.Perform(HapticFeedbackType.LongPress);
                     BasketManager.Instance.AddToBasket(dish);
                     await Toast.Make($"{dish.Name} added to basket").Show();
                 }
                 else
                 {
-                    // Short Press = Navigate to detail
+                    // Short press: Navigate to detail
                     HapticFeedback.Default.Perform(HapticFeedbackType.Click);
-                    await Shell.Current.GoToAsync(nameof(DishDetailPage), true, new Dictionary<string, object>
+                    await Shell.Current.GoToAsync($"///{nameof(DishDetailPage)}", true, new Dictionary<string, object>
                     {
                         { "Dish", dish }
                     });
                 }
             }
+        }
+
+        private void BasketItems_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            MainThread.BeginInvokeOnMainThread(UpdateBasketButton);
+        }
+
+        private void UpdateBasketButton()
+        {
+            if (BasketManager.Instance.BasketItems.Any())
+            {
+                BasketButton.IsVisible = true;
+                var total = BasketManager.Instance.BasketItems.Sum(item => item.Dish.Price * item.Quantity);
+                BasketButton.Text = $"£{total:0.00}";
+            }
+            else
+            {
+                BasketButton.IsVisible = false;
+            }
+        }
+
+        private async void OnBasketClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(BasketPage));
         }
     }
 }
