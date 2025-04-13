@@ -7,8 +7,10 @@
 
     <Grid RowDefinitions="Auto,Auto,Auto,*">
 
+        <!-- Sticky NavBar -->
         <local:StickyNavBar Grid.Row="0" />
 
+        <!-- Title -->
         <Label Grid.Row="1"
                Style="{StaticResource TitleStyle}"
                HorizontalOptions="Center"
@@ -22,6 +24,7 @@
             </Label.FormattedText>
         </Label>
 
+        <!-- Category Tabs -->
         <ScrollView Grid.Row="2" Orientation="Horizontal" Padding="10,5">
             <HorizontalStackLayout Spacing="12">
                 <Button Text="Meals" Clicked="ScrollToMeals" />
@@ -32,28 +35,30 @@
             </HorizontalStackLayout>
         </ScrollView>
 
+        <!-- Dish Collection -->
         <CollectionView x:Name="DishList"
-                Grid.Row="3"
-                ItemsSource="{Binding Dishes}"
-                SelectionMode="None">
+                        Grid.Row="3"
+                        ItemsSource="{Binding Dishes}"
+                        SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Margin="10"
-                   Padding="10"
-                   BackgroundColor="#1E1E1E"
-                   CornerRadius="10">
+                           Padding="10"
+                           BackgroundColor="#1E1E1E"
+                           CornerRadius="10">
                         <Grid>
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnDishTapped" />
-                            </Grid.GestureRecognizers>
+                            <Grid.Behaviors>
+                                <local:PressBehaviour Dish="{Binding}" />
+                            </Grid.Behaviors>
+
                             <VerticalStackLayout>
                                 <Label Text="{Binding Name}"
-                               TextColor="White"
-                               FontSize="16"
-                               FontFamily="PalanquinDarkMedium" />
+                                       TextColor="White"
+                                       FontSize="16"
+                                       FontFamily="PalanquinDarkMedium" />
                                 <Label Text="{Binding DisplayPrice}"
-                               TextColor="#FECA18"
-                               FontSize="14" />
+                                       TextColor="#FECA18"
+                                       FontSize="14" />
                             </VerticalStackLayout>
                         </Grid>
                     </Frame>
