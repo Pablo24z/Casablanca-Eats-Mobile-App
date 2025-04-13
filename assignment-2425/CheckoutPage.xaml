@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="assignment_2425.CheckoutPage"
+             BackgroundColor="#131313"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Checkout"
+                   FontSize="32"
+                   TextColor="#FECA18"
+                   HorizontalOptions="Center" />
+
+            <Entry x:Name="NameEntry" Placeholder="Full Name" BackgroundColor="White" TextColor="Black" />
+            <Entry x:Name="PhoneEntry" Placeholder="Phone Number" BackgroundColor="White" TextColor="Black" Keyboard="Telephone" />
+
+            <HorizontalStackLayout Spacing="10">
+                <Entry x:Name="StreetEntry" Placeholder="Street Address" BackgroundColor="White" TextColor="Black" HorizontalOptions="FillAndExpand" />
+                <ImageButton Source="gps_icon.png" Clicked="OnGetLocationClicked" WidthRequest="35" HeightRequest="35" BackgroundColor="Transparent" />
+            </HorizontalStackLayout>
+
+            <Entry x:Name="CityEntry" Placeholder="City" BackgroundColor="White" TextColor="Black" />
+            <Entry x:Name="PostcodeEntry" Placeholder="Postcode" BackgroundColor="White" TextColor="Black" />
+
+            <Label Text="Card Details"
+                   FontSize="20"
+                   TextColor="White"
+                   Margin="0,20,0,0" />
+
+            <Entry x:Name="CardNameEntry" Placeholder="Name on Card" BackgroundColor="White" TextColor="Black" />
+            <Entry x:Name="CardNumberEntry" Placeholder="Card Number" BackgroundColor="White" TextColor="Black" Keyboard="Numeric" />
+
+            <HorizontalStackLayout Spacing="10">
+                <Entry x:Name="CVVEntry" Placeholder="CVV" BackgroundColor="White" TextColor="Black" Keyboard="Numeric" WidthRequest="100" />
+                <Entry x:Name="ExpiryEntry" Placeholder="MM/YY" BackgroundColor="White" TextColor="Black" WidthRequest="100" />
+            </HorizontalStackLayout>
+
+            <Button Text="Place Order"
+                    BackgroundColor="#7ECB37"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Clicked="OnSubmitOrderClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
