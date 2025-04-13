@@ -75,7 +75,8 @@
 
                 <!-- Popular Dishes Heading -->
                 <Label Text="Popular Dishes"
-                       FontSize="20"
+                       Style="{StaticResource TitleStyle}"
+                       FontSize="24"
                        FontAttributes="Bold"
                        TextColor="#7ECB37" />
 
