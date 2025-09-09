@@ -1,6 +1,7 @@
 # Casablanca Eats - .NET MAUI Mobile Ordering App
 
 A cross-platform (.NET MAUI, .NET 8) mobile app for a real Caribbean restaurant in London.
+
 **Focus:** usable, accessible ordering with native device features.
 
 ## Highlights
