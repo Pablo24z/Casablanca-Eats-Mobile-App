@@ -1,5 +1,3 @@
-# Mobile Computing Assessment 24/25
-
 # Casablanca Eats 
 
 A cross-platform mobile food ordering app built for Casablanca, a family-run Caribbean restaurant in Hackney, London.
