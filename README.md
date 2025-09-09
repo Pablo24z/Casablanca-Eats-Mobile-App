@@ -1,9 +1,25 @@
-# Casablanca Eats 
+# Casablanca Eats - .NET MAUI Mobile Ordering App
 
-A cross-platform mobile food ordering app built for Casablanca, a family-run Caribbean restaurant in Hackney, London.
-This project was inspired by a real-life connection — having previously helped design their website, this mobile app extends their digital presence and opens up a potential real-world deployment.
+A cross-platform (.NET MAUI, .NET 8) mobile app for a real Caribbean restaurant in London.
+**Focus:** usable, accessible ordering with native device features.
 
----
+## Highlights
+- **Ordering UX:** category browsing, basket, validated checkout.
+- **Native integrations:** GPS autofill, haptics, shake-to-undo, toast notifications.
+- **Accessibility:** WCAG-minded colour contrast, 18sp+ fonts, clear error states, dark mode.
+- **Architecture:** MVVM, data binding; tested on Android phones/tablets.
+
+## Tech
+`.NET MAUI`, `C#`, `MVVM`, `Android Emulator`, `Visual Studio`.
+
+## Run locally
+- Open in Visual Studio 2022 (17.9+), target **Android**.
+- Restore dependencies, build, and deploy to emulator/USB device.
+
+## Roadmap
+- Payment provider sandbox
+- Basic order history (local DB)
+
 
 ## About the App
 
