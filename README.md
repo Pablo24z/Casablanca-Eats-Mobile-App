@@ -1,4 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/QQNYo0xn)
 # Mobile Computing Assessment 24/25
 
 # Casablanca Eats 
@@ -95,11 +94,6 @@ Casablanca Eats demonstrates my ability to build apps that are accessible, respo
 Thanks for taking the time to explore this project!
 
 ---
-
-
-> Do not delete or modify:
-- `.gitignore`
-- `.gitattributes`
 
 This app was built using .NET MAUI (targeting .NET 8), tested on both emulator and physical devices, and committed regularly to GitHub as part of development tracking.
 
